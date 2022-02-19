@@ -45,7 +45,7 @@ public class UniversityMain {
         
         courseload.newSeatAssignment(courseoffer); //register student in class
         
-        int total = department.calculateRevenuesBySemester("Fall2020");
+        int total = department.calculateRevenuesBySemester("Spring2022");
         System.out.println("Total: " + total);
 
     }

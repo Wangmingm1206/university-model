@@ -5,8 +5,6 @@
  */
 package Employer;
 
-import Persona.Faculty.*;
-import Persona.*;
 import Department.Department;
 import java.util.ArrayList;
 
