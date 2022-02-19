@@ -16,7 +16,6 @@ import java.util.ArrayList;
 public class CourseSchedule {
 
     CourseCatalog coursecatalog;
-
     ArrayList<CourseOffer> schedule;
     String semester;
 
@@ -27,10 +26,11 @@ public class CourseSchedule {
 
     }
 
-    public CourseOffer newCourseOffer(String  n) {
+    public CourseOffer newCourseOffer(String n) {
 
         Course c = coursecatalog.getCourseByNumber(n);
-        if(c==null) return null;
+        if (c == null)
+            return null;
         CourseOffer co;
         co = new CourseOffer(c);
         schedule.add(co);
