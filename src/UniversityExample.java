@@ -19,7 +19,7 @@ import Persona.StudentProfile;
  *
  * @author kal bugrara
  */
-public class UniversityMain {
+public class UniversityExample {
 
     /**
      * @param args the command line arguments
