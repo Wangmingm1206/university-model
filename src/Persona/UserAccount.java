@@ -5,6 +5,11 @@
  */
 package Persona;
 
+/**
+ *
+ * @author kal bugrara
+ */
+
 import WorkAreas.Workarea;
 
 /**

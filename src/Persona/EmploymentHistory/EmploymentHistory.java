@@ -13,6 +13,7 @@ import java.util.ArrayList;
  */
 public class EmploymentHistory {
     ArrayList<Employment> employments;
+
     public EmploymentHistory(){
         employments = new ArrayList<Employment>();
     }

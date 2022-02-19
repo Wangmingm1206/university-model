@@ -20,7 +20,9 @@ public class Calendar {
     }
     
     public void addCourseSchedule(String semester, CourseSchedule cs){
+        
         mastercatalog.put(semester, cs);
+        
     }
     
     

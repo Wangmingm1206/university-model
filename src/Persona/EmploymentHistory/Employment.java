@@ -14,18 +14,16 @@ import java.util.ArrayList;
  * @author kal bugrara
  */
 public class Employment {
+
     ArrayList<CourseOffer> relevantcourseoffers;
     int weight;
     String quality;
     String job;
-    Employment nextemplyment; // next job so they are in a sequence
-
+    Employment nextEmployment; // next job so they are in a sequence
     EmployerProfile employer;
 
     public Employment(String j) {
-
-        relevantcourseoffers = new ArrayList<CourseOffer>();
-
+        ArrayList<CourseOffer> relevantcourseoffers = new ArrayList<CourseOffer>();
     }
 
 }

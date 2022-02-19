@@ -5,10 +5,17 @@
  */
 package College;
 
+import Department.Department;
+import java.util.ArrayList;
+
 /**
  *
  * @author kal bugrara
  */
 public class College {
+    ArrayList<Department> departments;
     
+    public College(String name){
+        departments = new ArrayList<Department>();
+    }
 }

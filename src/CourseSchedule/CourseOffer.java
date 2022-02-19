@@ -24,7 +24,7 @@ public class CourseOffer {
         course = c;
         seatlist = new ArrayList<Seat>();
     }
-    
+
     public void AssignAsTeacher(FacultyProfile fp) {
 
         facultyassignment = new FacultyAssignment(fp, this);
@@ -39,13 +39,9 @@ public class CourseOffer {
     }
 
     public void generatSeats(int n) {
-
         for (int i = 0; i < n; i++) {
-
             seatlist.add(new Seat(this, i));
-
         }
-
     }
 
     public Seat getEmptySeat() {
@@ -59,15 +55,14 @@ public class CourseOffer {
         return null;
     }
 
-
     public SeatAssignment assignEmptySeat(CourseLoad cl) {
 
         Seat seat = getEmptySeat();
         if (seat == null) {
             return null;
         }
-        SeatAssignment sa = seat.newSeatAssignment(cl); //seat is already linked to course offer
-        cl.registerStudent(sa); //coures offer seat is now linked to student
+        SeatAssignment sa = seat.newSeatAssignment(cl); // seat is already linked to course offer
+        cl.registerStudent(sa); // coures offer seat is now linked to student
         return sa;
     }
 
@@ -83,10 +78,12 @@ public class CourseOffer {
         }
         return sum;
     }
-    public Course getSubjectCourse(){
+
+    public Course getSubjectCourse() {
         return course;
     }
-    public int getCreditHours(){
+
+    public int getCreditHours() {
         return course.getCredits();
     }
 

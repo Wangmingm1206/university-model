@@ -14,7 +14,6 @@ import java.util.HashMap;
  *
  * @author kal bugrara
  */
-
 public class Transcript {
 
     StudentProfile student;
@@ -25,6 +24,14 @@ public class Transcript {
     public Transcript(StudentProfile sp) {
         student = sp;
         courseloadlist = new HashMap<String, CourseLoad>();
+
+    }
+
+    public int getStudentSatisfactionIndex() {
+        //for each courseload 
+        //get seatassigmnets; 
+        //for each seatassignment add 1 if like =true;
+        return 0;
     }
 
     public CourseLoad newCourseLoad(String sem) {
@@ -56,11 +63,22 @@ public class Transcript {
         }
         return sum;
     }
-    
+    //sat index means student rated their courses with likes;
+    public int getStudentSatifactionIndex() {
+        ArrayList<SeatAssignment> courseregistrations = getCourseList();
+        int sum = 0;
+        for (SeatAssignment sa : courseregistrations) {
+
+            if (sa.getLike()) {
+                sum = sum + 1;
+            }
+        }
+        return sum;
+    }
     //generate a list of all courses taken so far (seetassignments) 
     //from multiple semesters (course loads)
     //from seat assignments we will be able to access the course offers
-    
+
     public ArrayList<SeatAssignment> getCourseList() {
         ArrayList<SeatAssignment> temp2;
         temp2 = new ArrayList<SeatAssignment>();
@@ -68,9 +86,9 @@ public class Transcript {
         for (CourseLoad cl : courseloadlist.values()) { //extract cl list as objects --ignore label
             temp2.addAll(cl.getSeatAssignments()); //merge one array list to another
         }
-        
+
         return temp2;
-    
+
     }
-    
+
 }

@@ -16,39 +16,38 @@ import java.util.ArrayList;
 public class FacultyProfile {
 
     Person person;
-    ArrayList<FacultyAssignment> facultyassignments; 
-    
+    ArrayList<FacultyAssignment> facultyassignments;
+
     public FacultyProfile(Person p) {
 
         person = p;
         facultyassignments = new ArrayList<FacultyAssignment>();
     }
-    public  double getProfAverageOverallRating(){
-        
+
+    public double getProfAverageOverallRating() {
+
         double sum = 0.0;
-        //for each facultyassignment extract class rating
-        //add them up and divide by the number of teaching assignmnet;
-        for(FacultyAssignment fa: facultyassignments){
-            
+        // for each facultyassignment extract class rating
+        // add them up and divide by the number of teaching assignmnet;
+        for (FacultyAssignment fa : facultyassignments) {
             sum = sum + fa.getRating();
-            
         }
-        //divide by the total number of faculty assignments
-        
-        return sum/(facultyassignments.size()*1.0); //this ensure we have double/double
-        
+        // divide by the total number of faculty assignments
+
+        return sum / (facultyassignments.size() * 1.0); // this ensure we have double/double
+
     }
 
-    public FacultyAssignment AssignAsTeacher(CourseOffer co){
-        
+    public FacultyAssignment AssignAsTeacher(CourseOffer co) {
+
         FacultyAssignment fa = new FacultyAssignment(this, co);
         facultyassignments.add(fa);
-        
+
         return fa;
     }
-    
-    public FacultyProfile getCourseOffer(String courseid){
-        return null; //complete it later
+
+    public FacultyProfile getCourseOffer(String courseid) {
+        return null; // complete it later
     }
 
     public boolean isMatch(String id) {

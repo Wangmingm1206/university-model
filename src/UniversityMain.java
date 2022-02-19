@@ -25,14 +25,14 @@ public class UniversityMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        
         Department department = new Department("Information Systems");
         CourseCatalog coursecatalog = department.getCourseCatalog();
         
         Course course = coursecatalog.newCourse("app eng", "info 5100", 4);
         System.out.println(course.getCOurseNumber());
-
-        CourseSchedule courseschedule = department.newCourseSchedule("Fall2020");
+        
+        CourseSchedule courseschedule = department.newCourseSchedule("Spring2022");
 
         CourseOffer courseoffer = courseschedule.newCourseOffer("info 5100");
         if (courseoffer==null)return;
@@ -41,8 +41,8 @@ public class UniversityMain {
         Person person = pd.newPerson("0112303");
         StudentDirectory sd = department.getStudentDirectory();
         StudentProfile student = sd.newStudentProfile(person);
-        CourseLoad courseload = student.newCourseLoad("Fall2022"); 
-//        
+        CourseLoad courseload = student.newCourseLoad("Spring2022"); 
+        
         courseload.newSeatAssignment(courseoffer); //register student in class
         
         int total = department.calculateRevenuesBySemester("Fall2020");
