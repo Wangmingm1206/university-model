@@ -30,7 +30,7 @@ public class UniversityExample {
         CourseCatalog coursecatalog = department.getCourseCatalog();
         
         Course course = coursecatalog.newCourse("app eng", "info 5100", 4);
-        System.out.println(course.getCOurseNumber());
+        System.out.println(course.getCourseNumber());
         
         CourseSchedule courseschedule = department.newCourseSchedule("Spring2022");
 
