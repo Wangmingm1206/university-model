@@ -6,6 +6,7 @@
 package Department;
 
 import CourseSchedule.CourseSchedule;
+import java.lang.*;
 import java.util.HashMap;
 /**
  *

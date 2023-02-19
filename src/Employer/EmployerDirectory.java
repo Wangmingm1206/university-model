@@ -5,6 +5,8 @@
  */
 package Employer;
 
+import Persona.Faculty.*;
+import Persona.*;
 import Department.Department;
 import java.util.ArrayList;
 
@@ -20,7 +22,7 @@ public class EmployerDirectory {
     public EmployerDirectory(Department d) {
 
         department = d;
-        employerlist = new ArrayList<EmployerProfile>();
+        employerlist = new ArrayList();
 
     }
 

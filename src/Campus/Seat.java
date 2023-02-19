@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Persona;
+package Campus;
 
 /**
  *
  * @author kal bugrara
  */
-public class StudentAccount {
+public class Seat {
     
 }

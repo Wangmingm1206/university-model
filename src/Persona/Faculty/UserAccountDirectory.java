@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Persona;
+package Persona.Faculty;
 
+import Persona.*;
 import Department.Department;
 import java.util.ArrayList;
 
@@ -12,32 +13,32 @@ import java.util.ArrayList;
  *
  * @author kal bugrara
  */
-public class StudentDirectory {
+public class UserAccountDirectory {
 
     Department department;
-    ArrayList<StudentProfile> studentlist;
+    ArrayList<UserAccount> studentlist;
 
-    public StudentDirectory(Department d) {
+    public UserAccountDirectory(Department d) {
 
         department = d;
         studentlist = new ArrayList();
 
     }
 
-    public StudentProfile newStudentProfile(Person p) {
+    public UserAccount newUserAccount(Person p) {
 
-        StudentProfile sp = new StudentProfile(p);
+        UserAccount sp = new UserAccount(p);
         studentlist.add(sp);
         return sp;
     }
 
-    public StudentProfile findStudent(String id) {
+    public UserAccount findStudent(String id) {
 
-        for (StudentProfile sp : studentlist) {
+        for (UserAccount sp : studentlist) {
 
-            if (sp.isMatch(id)) {
-                return sp;
-            }
+         //   if (sp.isMatch(id)) {
+         //       return sp;
+         //   }
         }
             return null; //not found after going through the whole list
          }

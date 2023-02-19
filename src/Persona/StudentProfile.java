@@ -7,7 +7,7 @@ package Persona;
 
 import CourseSchedule.CourseLoad;
 import CourseSchedule.SeatAssignment;
-import Persona.EmploymentHistory.EmploymentHistory;
+import Persona.EmploymentHistory.EmploymentHistroy;
 import java.util.ArrayList;
 
 /**
@@ -18,13 +18,13 @@ public class StudentProfile {
 
     Person person;
     Transcript transcript;
-    EmploymentHistory employmenthistory;
+    EmploymentHistroy employmenthistory;
 
     public StudentProfile(Person p) {
 
         person = p;
         transcript = new Transcript(this);
-        employmenthistory = new EmploymentHistory();
+        employmenthistory = new EmploymentHistroy();
     }
 
     public boolean isMatch(String id) {

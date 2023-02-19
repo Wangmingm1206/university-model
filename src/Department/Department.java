@@ -36,30 +36,29 @@ public class Department {
 
     public Department(String n) {
         name = n;
-        mastercoursecatalog = new HashMap<String, CourseSchedule>();
+        mastercoursecatalog = new HashMap<>();
         coursecatalog = new CourseCatalog(this);
-        studentdirectory = new StudentDirectory(this); // pass the department object so it stays linked to it
+        studentdirectory = new StudentDirectory(this); //pass the department object so it stays linked to it
         persondirectory = new PersonDirectory();
         degree = new Degree("MSIS");
-
+        
     }
-
-    public void addCoreCourse(Course c) {
+    public void addCoreCourse(Course c){
         degree.addCoreCourse(c);
-
+        
     }
-
-    public void addElectiveCourse(Course c) {
+public void addElectiveCourse(Course c){
         degree.addElectiveCourse(c);
-
+        
     }
-
     public PersonDirectory getPersonDirectory() {
+
         return persondirectory;
+
     }
 
     public StudentDirectory getStudentDirectory() {
-        return studentdirectory;
+    return studentdirectory;
     }
 
     public CourseSchedule newCourseSchedule(String semester) {
@@ -91,10 +90,7 @@ public class Department {
 
         CourseSchedule css = mastercoursecatalog.get(semester);
 
-        if (css != null)
-            return css.calculateTotalRevenues();
-        else
-            return 0;
+        return css.calculateTotalRevenues();
 
     }
 

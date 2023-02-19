@@ -19,8 +19,10 @@ public class FacultyDirectory {
     ArrayList<FacultyProfile> teacherlist;
 
     public FacultyDirectory(Department d) {
+
         department = d;
-        teacherlist = new ArrayList<FacultyProfile>();
+        teacherlist = new ArrayList();
+
     }
 
     public FacultyProfile newFacultyProfile(Person p) {
@@ -29,19 +31,18 @@ public class FacultyDirectory {
         teacherlist.add(sp);
         return sp;
     }
-
-    public FacultyProfile getTopProfessor() {
-
+    
+    public FacultyProfile getTopProfessor(){
+        
         double bestratingsofar = 0.0;
         FacultyProfile BestProfSofar = null;
-
-        for (FacultyProfile fp : teacherlist)
-            if (fp.getProfAverageOverallRating() > bestratingsofar) {
-                bestratingsofar = fp.getProfAverageOverallRating();
-                BestProfSofar = fp;
-            }
+        for(FacultyProfile fp: teacherlist)
+           if(fp.getProfAverageOverallRating()>bestratingsofar){
+           bestratingsofar = fp.getProfAverageOverallRating();
+           BestProfSofar = fp;
+           }
         return BestProfSofar;
-
+        
     }
 
     public FacultyProfile findTeachingFaculty(String id) {
@@ -52,7 +53,7 @@ public class FacultyDirectory {
                 return sp;
             }
         }
-        return null; // not found after going through the whole list
-    }
-
+            return null; //not found after going through the whole list
+         }
+    
 }

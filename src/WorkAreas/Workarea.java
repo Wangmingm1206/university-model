@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package WorkAreas;
+package workareas;
 
 import Persona.Person;
 import java.util.ArrayList;
@@ -21,8 +21,8 @@ public class Workarea {
     public Workarea(Person p){
         
         person = p;
-        inQueue = new ArrayList<WorkRequest>();
-        outQueue = new ArrayList<WorkRequest>();
+        inQueue = new ArrayList();
+        outQueue = new ArrayList();
         
         
     }

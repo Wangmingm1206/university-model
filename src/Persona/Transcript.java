@@ -23,7 +23,7 @@ public class Transcript {
 
     public Transcript(StudentProfile sp) {
         student = sp;
-        courseloadlist = new HashMap<String, CourseLoad>();
+        courseloadlist = new HashMap();
 
     }
 
@@ -80,8 +80,8 @@ public class Transcript {
     //from seat assignments we will be able to access the course offers
 
     public ArrayList<SeatAssignment> getCourseList() {
-        ArrayList<SeatAssignment> temp2;
-        temp2 = new ArrayList<SeatAssignment>();
+        ArrayList temp2;
+        temp2 = new ArrayList();
 
         for (CourseLoad cl : courseloadlist.values()) { //extract cl list as objects --ignore label
             temp2.addAll(cl.getSeatAssignments()); //merge one array list to another

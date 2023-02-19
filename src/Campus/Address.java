@@ -3,17 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Persona;
+package Campus;
 
 /**
  *
  * @author kal bugrara
  */
 public class Address {
-    String line1;
-    String line2;
-    public Address(){
-        
+
+    int number;
+    String street;
+    String zipcode;
+    String gps;
+    public Address(int n, String s, String zip, String g){
+    number = n;
+    street = s;
+    zipcode = zip;
+    gps = g;  
     }
     
+
 }

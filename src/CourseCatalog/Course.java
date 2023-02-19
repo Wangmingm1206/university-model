@@ -23,7 +23,7 @@ public class Course {
 
     }
 
-    public String getCourseNumber() {
+    public String getCOurseNumber() {
         return number;
     }
 

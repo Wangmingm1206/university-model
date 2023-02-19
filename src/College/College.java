@@ -16,6 +16,6 @@ public class College {
     ArrayList<Department> departments;
     
     public College(String name){
-        departments = new ArrayList<Department>();
+        departments = new ArrayList();
     }
 }

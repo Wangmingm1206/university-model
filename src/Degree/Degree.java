@@ -22,8 +22,8 @@ public class Degree {
 
     public Degree(String name) {
         title = name;
-        corelist = new ArrayList<Course>();
-        electives = new ArrayList<Course>();
+        corelist = new ArrayList();
+        electives = new ArrayList();
     }
 
     public void addCoreCourse(Course c) {
@@ -43,7 +43,7 @@ public class Degree {
         //For each core course in the core list of the degree do the following:
         //Check if the core class at hand is in the transcrip
         //Repeat this check for the electives as well
-        ArrayList<SeatAssignment> sas = sp.getCourseList(); //seatAssignments extracted from course loads
+        ArrayList sas = sp.getCourseList(); //seatAssignments extracted from course loads
 
         if (validateCoreClasses(sas) == false) {
             return false;

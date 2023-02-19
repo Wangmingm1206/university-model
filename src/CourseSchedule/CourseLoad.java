@@ -16,7 +16,7 @@ public class CourseLoad {
     ArrayList<SeatAssignment> seatassignments;
     
     public CourseLoad(String s){
-        seatassignments = new ArrayList<SeatAssignment>();
+        seatassignments = new ArrayList();
         semester = s;
     }
     public SeatAssignment newSeatAssignment(CourseOffer co){

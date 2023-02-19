@@ -5,10 +5,21 @@
  */
 package Campus;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author kal bugrara
  */
 public class Campus {
+    
+    Address address;
+    ArrayList<Building> buildings;
+    public Campus(Address a){
+    
+        address = a;
+        buildings = new ArrayList();
+        
+    }
     
 }
