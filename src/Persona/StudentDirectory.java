@@ -20,7 +20,7 @@ public class StudentDirectory {
     public StudentDirectory(Department d) {
 
         department = d;
-        studentlist = new ArrayList();
+        studentlist = new ArrayList<StudentProfile>();
 
     }
 

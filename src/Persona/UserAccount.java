@@ -10,7 +10,7 @@ package Persona;
  * @author kal bugrara
  */
 
-import workareas.Workarea;
+import WorkAreas.Workarea;
 
 /**
  *
