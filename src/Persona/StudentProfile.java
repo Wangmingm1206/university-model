@@ -21,7 +21,6 @@ public class StudentProfile {
     EmploymentHistroy employmenthistory;
 
     public StudentProfile(Person p) {
-
         person = p;
         transcript = new Transcript(this);
         employmenthistory = new EmploymentHistroy();
@@ -36,12 +35,10 @@ public class StudentProfile {
     }
 
     public CourseLoad getCourseLoadBySemester(String semester) {
-
         return transcript.getCourseLoadBySemester(semester);
     }
 
     public CourseLoad getCurrentCourseLoad() {
-
         return transcript.getCurrentCourseLoad();
     }
 
@@ -51,8 +48,16 @@ public class StudentProfile {
     }
 
     public ArrayList<SeatAssignment> getCourseList() {
-
         return transcript.getCourseList();
-
     }
+
+    public void printStudentNameAndID() {
+        System.out.println("Student name, id: " + person.getName() + ", " + person.getPersonId());
+    }
+
+    public void printTranscript() {
+        printStudentNameAndID();
+        transcript.print();
+    }
+
 }

@@ -15,7 +15,8 @@ import java.util.ArrayList;
 public class CourseCatalog {
     Department department;
     String lastupdated;
-    ArrayList<Course> courselist; 
+    ArrayList<Course> courselist;
+    
     public CourseCatalog(Department d){
         courselist = new ArrayList();
         department = d;
@@ -38,6 +39,13 @@ public class CourseCatalog {
             if(c.getCOurseNumber().equals(n)) return c;
         }
         return null;
+    }
+
+    public void printCourseCatalog(){
+        System.out.println("Course Catalog");
+        for(Course c: courselist){
+            System.out.println(courselist.indexOf(c) + 1 + ". " + c.getCOurseNumber() + " - " + c.getCourseName());
+        }
     }
 
 }

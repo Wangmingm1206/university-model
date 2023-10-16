@@ -24,7 +24,6 @@ public class Transcript {
     public Transcript(StudentProfile sp) {
         student = sp;
         courseloadlist = new HashMap();
-
     }
 
     public int getStudentSatisfactionIndex() {
@@ -34,10 +33,14 @@ public class Transcript {
         return 0;
     }
 
-    public CourseLoad newCourseLoad(String sem) {
+    public StudentProfile getStudentProfile() {
+        return student;
+    }
 
-        currentcourseload = new CourseLoad(sem);
-        courseloadlist.put(sem, currentcourseload);
+    public CourseLoad newCourseLoad(String semester) {
+
+        currentcourseload = new CourseLoad(semester);
+        courseloadlist.put(semester, currentcourseload);
         return currentcourseload;
     }
 
@@ -89,6 +92,13 @@ public class Transcript {
 
         return temp2;
 
+    }
+
+    public void print(){
+        System.out.println("------- Student transcript --------- ");
+        for (CourseLoad eachCourseload : courseloadlist.values()) {
+            eachCourseload.print();
+        }   
     }
 
 }

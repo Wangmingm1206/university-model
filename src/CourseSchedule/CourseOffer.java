@@ -38,20 +38,15 @@ public class CourseOffer {
         return course.getCOurseNumber();
     }
 
-    public void generatSeats(int n) {
-
+    public void generateSeats(int n) {
         for (int i = 0; i < n; i++) {
-
             seatlist.add(new Seat(this, i));
-
         }
 
     }
 
     public Seat getEmptySeat() {
-
         for (Seat s : seatlist) {
-
             if (!s.isOccupied()) {
                 return s;
             }
@@ -61,12 +56,11 @@ public class CourseOffer {
 
 
     public SeatAssignment assignEmptySeat(CourseLoad cl) {
-
-        Seat seat = getEmptySeat();
-        if (seat == null) {
+        Seat anEmptySeat = getEmptySeat();
+        if (anEmptySeat == null) {
             return null;
         }
-        SeatAssignment sa = seat.newSeatAssignment(cl); //seat is already linked to course offer
+        SeatAssignment sa = anEmptySeat.newSeatAssignment(cl); //seat is already linked to course offer
         cl.registerStudent(sa); //coures offer seat is now linked to student
         return sa;
     }

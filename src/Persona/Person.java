@@ -12,8 +12,10 @@ package Persona;
 public class Person {
     
     String id;
-    public Person (String id){
-        
+    String name;
+
+    public Person (String id, String name){
+        this.name = name;
         this.id = id;
     }
     public String getPersonId(){
@@ -23,6 +25,15 @@ public class Person {
         public boolean isMatch(String id){
         if(getPersonId().equals(id)) return true;
         return false;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    @Override
+    public String toString(){
+        return name;
     }
     
 }
