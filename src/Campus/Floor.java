@@ -13,14 +13,16 @@ import java.util.ArrayList;
  */
 public class Floor {
 
-    int number;
-    ArrayList<Classroom> rooms;
-    Building building;
-
+    private int number;
+    private ArrayList<Classroom> rooms;
+    private Building building;
+    
+    
+    
     public Floor(int n, Building b) {
-        number = n;
-        building = b;
-        rooms = new ArrayList();
+        this.number = n;
+        this.building = b;
+        this.rooms = new ArrayList();
     }
     public void newRoom(int n){
             Classroom r = new Classroom(n, this); //pass the floor object for reference
@@ -30,5 +32,25 @@ public class Floor {
         
         //check each classroom. If all classrooms are safe then floor is safe
         return true;
+    }
+    public int getNumber() {
+        return number;
+    }
+    public void setNumber(int number) {
+        this.number = number;
+    }
+    public ArrayList<Classroom> getRooms() {
+        return rooms;
+    }
+    public void setRooms(ArrayList<Classroom> rooms) {
+        this.rooms = rooms;
+    }
+    public Building getBuilding() {
+        return building;
+    }
+    public void setBuilding(Building building) {
+        this.building = building;
+    }
+    public void print() {
     }
 }

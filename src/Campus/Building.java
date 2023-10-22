@@ -12,14 +12,19 @@ import java.util.ArrayList;
  * @author kal bugrara
  */
 public class Building {
-    int number;
-    ArrayList<Floor> floors;
-    Address address;
+    private int number;
+    private ArrayList<Floor> floors;
+    private Address address;
+    
+    
+
     public Building(int n, Address ad){
-        number = n;
-        address = ad;
-        floors = new ArrayList();
+        this.number = n;
+        this.address = ad;
+        this.floors = new ArrayList();
+    
     }
+    
     public Floor addNewFloor(int n){
         Floor f = new Floor(n, this); //reference back to building;
         floors.add(f);
@@ -29,6 +34,35 @@ public class Building {
         
         //Building is safe if all floors are safe
         return true; //to be completed
+    }
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public ArrayList<Floor> getFloors() {
+        return floors;
+    }
+
+    public void setFloors(ArrayList<Floor> floors) {
+        this.floors = floors;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+    public void print(){
+        System.out.println("Building: " + number + " " + address);
+        for(Floor f: floors){
+            f.print();
+        }
     }
     
 }

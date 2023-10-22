@@ -13,12 +13,14 @@ import java.util.ArrayList;
  * @author kal bugrara
  */
 public class CourseCatalog {
-    Department department;
-    String lastupdated;
-    ArrayList<Course> courselist;
+    private Department department;
+    private String lastupdated;
+    private ArrayList<Course> courselist;
     
+    
+
     public CourseCatalog(Department d){
-        courselist = new ArrayList();
+        courselist = new ArrayList<Course>();
         department = d;
     }
     

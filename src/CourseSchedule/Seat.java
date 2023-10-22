@@ -11,15 +11,49 @@ package CourseSchedule;
  */
 public class Seat {
     
-    Boolean occupied; 
-    int number;
-    SeatAssignment seatassignment; //links back to studentprofile
-    CourseOffer courseoffer;
+    private Boolean occupied; 
+    private int number;
+    private SeatAssignment seatassignment; //links back to studentprofile
+    private CourseOffer courseoffer;
+    
+    
+
     public Seat (CourseOffer co, int n){
-        courseoffer = co;
-        number = n;
-        occupied = false;
+        this.courseoffer = co;
+        this.number = n;
+        this.occupied = false;
         
+    }
+    public Boolean getOccupied() {
+        return occupied;
+    }
+
+    public void setOccupied(Boolean occupied) {
+        this.occupied = occupied;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public SeatAssignment getSeatassignment() {
+        return seatassignment;
+    }
+
+    public void setSeatassignment(SeatAssignment seatassignment) {
+        this.seatassignment = seatassignment;
+    }
+
+    public CourseOffer getCourseoffer() {
+        return courseoffer;
+    }
+
+    public void setCourseoffer(CourseOffer courseoffer) {
+        this.courseoffer = courseoffer;
     }
     
     public Boolean isOccupied(){

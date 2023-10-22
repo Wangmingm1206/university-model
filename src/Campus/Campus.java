@@ -13,13 +13,36 @@ import java.util.ArrayList;
  */
 public class Campus {
     
-    Address address;
-    ArrayList<Building> buildings;
+    private Address address;
+    private ArrayList<Building> buildings;
+    
+   
+
     public Campus(Address a){
     
-        address = a;
-        buildings = new ArrayList();
+        this.address = a;
+        this.buildings = new ArrayList();
         
     }
-    
+     public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public ArrayList<Building> getBuildings() {
+        return buildings;
+    }
+
+    public void setBuildings(ArrayList<Building> buildings) {
+        this.buildings = buildings;
+    }
+    public void print(){
+        System.out.println("Campus: " + address);
+        for(Building b: buildings){
+            b.print();
+        }
+    }
 }

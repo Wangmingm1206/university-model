@@ -11,16 +11,20 @@ package CourseCatalog;
  */
 public class Course {
 
-    String number;
-    String name;
-    int credits;
-    int price = 1500; // per credit hour
+    private String number;
+    private String name;
+    private int credits;
+    private int price = 1500; // per credit hour
+
+    
+
+    
 
     public Course(String numb, String n, int ch) {
-        name = n;
-        number = numb;
-        credits = ch;
-
+        this.name = n;
+        this.number = numb;
+        this.credits = ch;
+        this.price = price * credits;
     }
 
     public String getCOurseNumber() {
@@ -39,5 +43,25 @@ public class Course {
     public String getCourseName() {
         return name;
     }  
+    
 
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCredits(int credits) {
+        this.credits = credits;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+    public void print(){
+        System.out.println("Course: " + number + " " + name + " " + credits + " " + price);
+    }
 }
