@@ -1,24 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package CourseSchedule;
 
 import CourseCatalog.Course;
 
-/**
- *
- * @author kal bugrara
- */
+
 public class SeatAssignment {
-    float grade; //(Letter grade mappings: A=4.0, A-=3.7, B+=3.3, B=3.0, )
-    Seat seat;
-    boolean like; //true means like and false means not like
-    CourseLoad courseload;
-    public SeatAssignment(CourseLoad cl, Seat s){
-        seat = s;
-        courseload = cl;
+    private float grade; //(Letter grade mappings: A=4.0, A-=3.7, B+=3.3, B=3.0, )
+    private Seat seat;
+    private boolean like; //true means like and false means not like
+    private CourseLoad courseload;
+
+    public SeatAssignment(CourseLoad cl, Seat s, float g){
+        this.seat = s;
+        this.courseload = cl;
+        
     }
      
     public boolean getLike(){
@@ -28,6 +23,18 @@ public class SeatAssignment {
         courseload = cl;
     }
     
+    public float getGrade(){
+        return grade;
+    }
+    public void setGrade(float grade){
+        this.grade = grade;
+    }
+    
+    
+    public void setLike(boolean like){
+        this.like = like;
+    }
+   
     public int getCreditHours(){
         return seat.getCourseCredits();
        

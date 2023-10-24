@@ -15,6 +15,7 @@ public class Course {
     private String name;
     private int credits;
     private int price = 1500; // per credit hour
+    private int totalPrice;
 
     
 
@@ -24,15 +25,18 @@ public class Course {
         this.name = n;
         this.number = numb;
         this.credits = ch;
-        this.price = price * credits;
+        calculateTotalPrice();
     }
-
+    
+    private void calculateTotalPrice(){
+        this.totalPrice = this.price * this.credits;
+    }
     public String getCOurseNumber() {
         return number;
     }
 
     public int getCoursePrice() {
-        return price * credits;
+        return totalPrice;
 
     }
 
@@ -45,23 +49,16 @@ public class Course {
     }  
     
 
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setCredits(int credits) {
-        this.credits = credits;
-    }
 
     public void setPrice(int price) {
         this.price = price;
+        calculateTotalPrice();
+    }
+    public void setCredits(int credits) {
+        this.credits = credits;
+        calculateTotalPrice();
     }
     public void print(){
-        System.out.println("Course: " + number + " " + name + " " + credits + " " + price);
+        System.out.println("Course: " + number + " " + name + " " + credits + " " + totalPrice);
     }
 }

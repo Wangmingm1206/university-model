@@ -22,8 +22,8 @@ public class Degree {
 
     public Degree(String name) {
         title = name;
-        corelist = new ArrayList();
-        electives = new ArrayList();
+        corelist = new ArrayList<>();
+        electives = new ArrayList<>();
     }
 
     public void addCoreCourse(Course c) {

@@ -20,8 +20,8 @@ public class Campus {
 
     public Campus(Address a){
     
-        this.address = a;
-        this.buildings = new ArrayList();
+        address = a;
+        buildings = new ArrayList<>();
         
     }
      public Address getAddress() {
