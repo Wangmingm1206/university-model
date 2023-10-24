@@ -12,24 +12,30 @@ import CourseSchedule.CourseOffer;
  * @author kal bugrara
  */
 public class FacultyAssignment {
-    double tracerating;
-    CourseOffer courseoffer;
-    FacultyProfile facultyprofile;
+    private double tracerating;
+    private CourseOffer courseoffer;
+    private FacultyProfile facultyprofile;
+
     public FacultyAssignment(FacultyProfile fp, CourseOffer co){
-        courseoffer = co;
-        facultyprofile = fp;
+        this.courseoffer = co;
+        this.facultyprofile = fp;
+        this.tracerating = 0.0;
     }
 
-       public double getRating(){
+    public double getRating(){
         
         return tracerating;
     }
-       public void seProfRating(double r){
+    public void setProfRating(double r){
            
-           tracerating = r;
+        tracerating = r;
        }
     public FacultyProfile getFacultyProfile(){
         return facultyprofile;
-    }
+        
     
+    }
+    public CourseOffer getCourseOffer() {
+        return courseoffer;
+    }
 }

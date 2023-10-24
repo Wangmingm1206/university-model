@@ -21,7 +21,7 @@ public class FacultyDirectory {
     public FacultyDirectory(Department d) {
 
         department = d;
-        teacherlist = new ArrayList();
+        teacherlist = new ArrayList<>();
 
     }
 

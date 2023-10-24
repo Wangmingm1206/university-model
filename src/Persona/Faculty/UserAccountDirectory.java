@@ -9,6 +9,8 @@ import Persona.*;
 import Department.Department;
 import java.util.ArrayList;
 
+import CourseCatalog.Course;
+
 /**
  *
  * @author kal bugrara
@@ -21,7 +23,7 @@ public class UserAccountDirectory {
     public UserAccountDirectory(Department d) {
 
         department = d;
-        studentlist = new ArrayList();
+        studentlist = new ArrayList<>();
 
     }
 
@@ -33,14 +35,20 @@ public class UserAccountDirectory {
     }
 
     public UserAccount findStudent(String id) {
-
         for (UserAccount sp : studentlist) {
-
-         //   if (sp.isMatch(id)) {
-         //       return sp;
-         //   }
+            if (sp.getPerson().getPersonId().equals(id)) {
+                return sp;
+            }
         }
-            return null; //not found after going through the whole list
-         }
+        return null; //not found after going through the whole list
+    }
+
+    public ArrayList<UserAccount> getAllStudents() {
+        return studentlist;
+    }
     
+    // Assuming a method in UserAccount class to register a course
+    public void registerStudentForCourse(UserAccount student, Course course) {
+        student.registerCourse(course);
+    }
 }
