@@ -1,5 +1,3 @@
-
-
 import College.College;
 import CourseCatalog.Course;
 import CourseCatalog.CourseCatalog;
@@ -9,69 +7,68 @@ import CourseSchedule.CourseSchedule;
 import CourseSchedule.SeatAssignment;
 import Department.Department;
 import Persona.Person;
+import Persona.Person.Faculty;
 import Persona.PersonDirectory;
 import Persona.StudentDirectory;
 import Persona.StudentProfile;
 import Persona.Transcript;
-
+import Persona.Faculty.FacultyDirectory;
 
 public class UniversityExample {
 
-    
     public static void main(String[] args) {
         College college = new College("Northeastern University College of Engineering");
         Department department = new Department("Information Systems");
         college.addDepartment(department);
-        
+
+        FacultyDirectory fd = department.getFacultyDirectory();
+        for (int i = 0; i < 5; i++) {
+            fd.newFacultyProfile("Faculty " + (i + 1));
+        }
+
         StudentDirectory sd = department.getStudentDirectory();
         PersonDirectory pd = department.getPersonDirectory();
+        for (int i = 0; i < 10; i++) {
+            Person studentPerson = pd.newPerson("ID" + (i + 1), "Student " + (i + 1));
+            sd.newStudentProfile(studentPerson);
+        }
 
-        // Student side process
-        Person archilPerson = pd.newPerson("0123", "Archil");
-        StudentProfile archil = sd.newStudentProfile(archilPerson);
-        
-        
-        Transcript archilsTranscript = archil.getTranscript();
-
-        CourseLoad archilsSpring2024 = archilsTranscript.newCourseLoad("Fall2023");
-        CourseLoad archilsCurrentCourseLoad = archil.getCurrentCourseLoad();
-
-
-        // Course side
-        
         CourseCatalog courseCatalog = department.getCourseCatalog();
-        Course info5001 = courseCatalog.newCourse("info5001", "Application Design & Modeling", 4);    
-        Course info5100 = courseCatalog.newCourse("info5100", "Application Engineering Development", 4);
-        Course info5200 = courseCatalog.newCourse("info5200", "Data Science Fundamentals", 4);
-        Course info5300 = courseCatalog.newCourse("info5300", "Cloud Computing", 4);
-        Course info5400 = courseCatalog.newCourse("info5400", "Advanced DB Management", 4);
+        courseCatalog.newCourse("info5001", "Application Design & Modeling", 4);
+        courseCatalog.newCourse("info5100", "Application Engineering Development", 4);
+        courseCatalog.newCourse("info5200", "Data Science Fundamentals", 4);
+        courseCatalog.newCourse("info5300", "Cloud Computing", 4);
+        courseCatalog.newCourse("info5400", "Advanced DB Management", 4);
 
         CourseSchedule csFall2023 = department.newCourseSchedule("Fall2023");
-        
-        CourseOffer info5001offerFall2023 = csFall2023.newCourseOffer("info5001");
-        CourseOffer info5100offerFall2023 = csFall2023.newCourseOffer("info5100");
 
-        CourseOffer info5200offerFall2023 = csFall2023.newCourseOffer("info5200");
-        CourseOffer info5300offerFall2023 = csFall2023.newCourseOffer("info5300");
-        CourseOffer info5400offerFall2023 = csFall2023.newCourseOffer("info5400");
-        
-        info5001offerFall2023.generateSeats(25); // This means 10 students can take this class
-        info5100offerFall2023.generateSeats(25);
-        info5200offerFall2023.generateSeats(25); 
-        info5300offerFall2023.generateSeats(25);
-        info5400offerFall2023.generateSeats(25);
-
-        
-        SeatAssignment archilRegisteredForInfo5001inFall2023 = info5001offerFall2023.assignEmptySeat(archilsCurrentCourseLoad);
-        SeatAssignment archilRegisteredForInfo5100inFall2023 = info5100offerFall2023.assignEmptySeat(archilsCurrentCourseLoad);
-        SeatAssignment archilRegisteredForInfo5200inFall2023 = info5200offerFall2023.assignEmptySeat(archilsCurrentCourseLoad); 
-        SeatAssignment archilRegisteredForInfo5300inFall2023 = info5300offerFall2023.assignEmptySeat(archilsCurrentCourseLoad);
-        SeatAssignment archilRegisteredForInfo5400inFall2023 = info5400offerFall2023.assignEmptySeat(archilsCurrentCourseLoad);
-
+        for (int i = 1; i <= 5; i++) {
+            String code = "info" + (5000 + i);
+            Course course = courseCatalog.getCourseByNumber(code);
+            CourseOffer courseOffer = csFall2023.newCourseOffer(code);
+            courseOffer.setFaculty(fd.getFaculty(i - 1)); // Assuming indexing starts from 0
+            courseOffer.createSeats(25);
+        }
         
 
-        archil.printTranscript();
+        for (StudentProfile student : sd.getAllStudentProfiles()) {
+            for (int j = 1; j <= 5; j++) {
+                String code = "info" + (5000 + j);
+                CourseOffer offer = csFall2023.getCourseOfferByNumber(code);
+                if(offer == null) {
+                    System.out.println("Course offer not found for code: " + code);
+                    continue;
+                }
+                SeatAssignment seat = offer.assignEmptySeat(student.getCurrentCourseLoad());
+                if (seat != null) {
+                    Assuming grade assignment happens later, placeholder set for now
+                    seat.setGrade("TBD");
+                }
+            }
+        }
 
+        csFall2023.printCourseSchedule();
+        double revenue = csFall2023.calculateTotalRevenue(1000);
+        System.out.println("Total Revenue for Fall 2023: $" + revenue);
     }
-
 }

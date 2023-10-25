@@ -59,7 +59,7 @@ public class Building {
         }
     }
 
-    public void setFloors(ArrayList arrayList) {
+    public void setFloors(ArrayList<>) {
     }
     
 }

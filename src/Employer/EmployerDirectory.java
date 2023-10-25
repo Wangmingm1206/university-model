@@ -22,7 +22,7 @@ public class EmployerDirectory {
     public EmployerDirectory(Department d) {
 
         department = d;
-        employerlist = new ArrayList();
+        employerlist = new ArrayList<>();
 
     }
 

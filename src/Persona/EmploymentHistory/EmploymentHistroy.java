@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class EmploymentHistroy {
     ArrayList<Employment> employments;
     public EmploymentHistroy(){
-        employments = new ArrayList();
+        employments = new ArrayList<>();
     }
     
     public Employment newEmployment(String job){

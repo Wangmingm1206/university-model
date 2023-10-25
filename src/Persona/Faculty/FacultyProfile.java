@@ -1,28 +1,29 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Persona.Faculty;
 
 import Persona.*;
 import CourseSchedule.CourseOffer;
 import java.util.ArrayList;
 
-/**
- *
- * @author kal bugrara
- */
+
 public class FacultyProfile {
 
-    Person person;
-    ArrayList <FacultyAssignment> facultyassignments; 
+    private Person person;
+    private ArrayList <FacultyAssignment> facultyassignments; 
     
-    public FacultyProfile(Person p) {
+    public FacultyProfile(Person string) {
 
-        person = p;
-        facultyassignments = new ArrayList();
+        person = string;
+        facultyassignments = new ArrayList<>();
     }
+    
+    public FacultyProfile(String name) {
+    }
+
+    public Person getPerson(){
+        return person;
+    }
+
     public  double getProfAverageOverallRating(){
         
         double sum = 0.0;
@@ -50,6 +51,11 @@ public class FacultyProfile {
     public FacultyProfile getCourseOffer(String courseid){
         return null; //complete it later
     }
+    public ArrayList<FacultyAssignment> getCoursesTaughtThisSemester() {
+        
+        return facultyassignments;
+    }
+
 
     public boolean isMatch(String id) {
         if (person.getPersonId().equals(id)) {

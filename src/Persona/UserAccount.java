@@ -1,32 +1,26 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Persona;
 
 import CourseCatalog.Course;
-
-/**
- *
- * @author kal bugrara
- */
-
+import CourseSchedule.CourseLoad;
 import WorkAreas.Workarea;
 
-/**
- *
- * @author kal bugrara
- */
+
 public class UserAccount {
-    Person person;
-    Workarea landingworkarea;
+    private Person person;
+    private Workarea landingworkarea;
+    private Transcript transcript;
     
     public UserAccount(Person p){
         person = p;
+        transcript = new Transcript(this);
     }
 
     public void registerCourse(Course course) {
+        CourseLoad courseLoad = transcript.newCourseLoad("Fall 2023"); // Assuming 'newCourseLoad' creates a new course load if not present.
+        courseLoad.addCourse(course);
+    
+    
     }
 
     public Person getPerson() {

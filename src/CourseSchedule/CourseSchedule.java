@@ -1,18 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package CourseSchedule;
 
 import CourseCatalog.Course;
 import CourseCatalog.CourseCatalog;
+import Persona.Person.Faculty;
+
 import java.util.ArrayList;
 
-/**
- *
- * @author kal bugrara
- */
+
 public class CourseSchedule {
 
     CourseCatalog coursecatalog;
@@ -21,18 +16,24 @@ public class CourseSchedule {
     String semester;
 
     public CourseSchedule(String s, CourseCatalog cc) {
-        semester = s;
-        coursecatalog = cc;
-        schedule = new ArrayList();
+        this.semester = s;
+        this.coursecatalog = cc;
+        schedule = new ArrayList<CourseOffer>();
 
     }
 
-    public CourseOffer newCourseOffer(String  n) {
+    public CourseOffer newCourseOffer(String n) {
 
         Course c = coursecatalog.getCourseByNumber(n);
-        if(c==null) return null;
-        CourseOffer co;
-        co = new CourseOffer(c);
+        if(c==null) {
+            System.out.println("Course not found in the catalog");
+            return null;
+        }
+        CourseOffer co = new CourseOffer(c);
+        // Faculty faculty;
+        // co.assignFaulty(faculty);
+        co.createSeats(25);
+
         schedule.add(co);
         return co;
     }
@@ -47,7 +48,7 @@ public class CourseSchedule {
         }
         return null;
     }
-
+ 
     public int calculateTotalRevenues() {
         int sum = 0;
         for (CourseOffer co : schedule) {
@@ -57,5 +58,25 @@ public class CourseSchedule {
         }
         return sum;
     }
+    public void printCourseSchedule() {
+        System.out.println("Course Schedule for " + semester);
+        System.out.println("------------------------------------");
 
+        for (CourseOffer co : schedule) {
+            
+            System.out.println("Course: " + co.getCourse().getCourseName());
+            System.out.println("Course Number: " + co.getCourseNumber());
+            System.out.println("Faculty: " + co.getFaculty().getName()); // Assuming CourseOffer and Faculty classes have these methods
+            System.out.println("Registered Students: " + co.getRegisteredStudentsCount()); // You'll need to implement this
+            System.out.println("Remaining Seats: " + co.getEmptySeatsCount()); // You'll need to implement this
+        }
+    }
+
+    public CourseOffer[] getAllCourseOffers() {
+        return null;
+    }
+
+    public double calculateTotalRevenue(int i) {
+        return 0;
+    }
 }

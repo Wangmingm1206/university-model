@@ -55,7 +55,7 @@ public class Seat {
     public void setCourseoffer(CourseOffer courseoffer) {
         this.courseoffer = courseoffer;
     }
-    
+
     public Boolean isOccupied(){
         return occupied;
 
@@ -72,4 +72,5 @@ public class Seat {
     public int getCourseCredits(){
         return courseoffer.getCreditHours();
     }
+    
 }

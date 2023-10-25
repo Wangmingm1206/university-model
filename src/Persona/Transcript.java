@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Persona;
 
 import CourseSchedule.CourseLoad;
@@ -12,42 +8,38 @@ import java.util.HashMap;
 
 import CourseCatalog.Course;
 
-/**
- *
- * @author kal bugrara
- */
+
 public class Transcript {
 
-    StudentProfile student;
-    HashMap<String, CourseLoad> courseloadlist;
+    private StudentProfile student;
+    private HashMap<String, CourseLoad> courseloadlist;
 
     CourseLoad currentcourseload;
 
-    public Transcript(StudentProfile sp) {
-        student = sp;
-        courseloadlist = new HashMap();
+    public Transcript(StudentProfile userAccount) {
+        student = userAccount;
+        courseloadlist = new HashMap<String, CourseLoad>();
     }
 
-    public int getStudentSatisfactionIndex() {
-        //for each courseload 
-        //get seatassigmnets; 
-        //for each seatassignment add 1 if like =true;
-        return 0;
+
+
+
+
+    public Transcript(UserAccount userAccount) {
     }
+
+
+
+
 
     public StudentProfile getStudentProfile() {
         return student;
     }
-    // 在StudentProfile类中：
-    public void assignGrade(Course course, String grade) {
-        transcript.assignGrade(course, grade);
+    
+    public static void assignGrade(Course course, String grade) {
+        Transcript.assignGrade(course, grade);
     }
-
-// 在Transcript类中：
-    public void assignGrade(Course course, String grade) {
-    // 这里的逻辑应该是在学生的成绩单上为指定的课程分配成绩。
-    // 实际实现取决于Transcript类的详细设计。
-}
+    
 
     public CourseLoad newCourseLoad(String semester) {
 
@@ -84,7 +76,7 @@ public class Transcript {
         int sum = 0;
         for (SeatAssignment sa : courseregistrations) {
 
-            if (sa.getLike()) {
+            if (sa.getLiked()) {
                 sum = sum + 1;
             }
         }
@@ -95,8 +87,7 @@ public class Transcript {
     //from seat assignments we will be able to access the course offers
 
     public ArrayList<SeatAssignment> getCourseList() {
-        ArrayList temp2;
-        temp2 = new ArrayList<>();
+        ArrayList<SeatAssignment> temp2 = new ArrayList<>();
 
         for (CourseLoad cl : courseloadlist.values()) { //extract cl list as objects --ignore label
             temp2.addAll(cl.getSeatAssignments()); //merge one array list to another

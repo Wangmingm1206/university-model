@@ -13,10 +13,11 @@ import java.util.ArrayList;
  * @author kal bugrara
  */
 public class EmployerProfile {
-    String name;
-    ArrayList<Employment> employments;
+    private String name;
+    private ArrayList<Employment> employments = new ArrayList<>();
+    
     public EmployerProfile(String n){  //could be company instead of just a name as a string
-        name = n;
+        this.name = n;
         
     }
          public boolean isMatch(String id){
