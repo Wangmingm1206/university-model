@@ -10,6 +10,8 @@ import CourseSchedule.SeatAssignment;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import CourseCatalog.Course;
+
 /**
  *
  * @author kal bugrara
@@ -36,6 +38,16 @@ public class Transcript {
     public StudentProfile getStudentProfile() {
         return student;
     }
+    // 在StudentProfile类中：
+    public void assignGrade(Course course, String grade) {
+        transcript.assignGrade(course, grade);
+    }
+
+// 在Transcript类中：
+    public void assignGrade(Course course, String grade) {
+    // 这里的逻辑应该是在学生的成绩单上为指定的课程分配成绩。
+    // 实际实现取决于Transcript类的详细设计。
+}
 
     public CourseLoad newCourseLoad(String semester) {
 
@@ -84,7 +96,7 @@ public class Transcript {
 
     public ArrayList<SeatAssignment> getCourseList() {
         ArrayList temp2;
-        temp2 = new ArrayList();
+        temp2 = new ArrayList<>();
 
         for (CourseLoad cl : courseloadlist.values()) { //extract cl list as objects --ignore label
             temp2.addAll(cl.getSeatAssignments()); //merge one array list to another

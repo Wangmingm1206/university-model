@@ -7,10 +7,7 @@ package Campus;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author kal bugrara
- */
+
 public class Floor {
 
     private int number;
@@ -22,15 +19,18 @@ public class Floor {
     public Floor(int n, Building b) {
         this.number = n;
         this.building = b;
-        this.rooms = new ArrayList();
+        this.rooms = new ArrayList<>();
     }
     public void newRoom(int n){
             Classroom r = new Classroom(n, this); //pass the floor object for reference
             rooms.add(r);
     }
-    public Boolean isFloorSafe(){
-        
-        //check each classroom. If all classrooms are safe then floor is safe
+    public Boolean isFloorSafe() { 
+        for (Classroom room : rooms) {
+            if (!room.isRoomSafe()) {
+                return false;
+            }
+        }
         return true;
     }
     public int getNumber() {
@@ -52,5 +52,9 @@ public class Floor {
         this.building = building;
     }
     public void print() {
+        System.out.println("Floor number: " + number);
+        for (Classroom room : rooms) {
+            room.print();
+        }
     }
 }

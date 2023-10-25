@@ -1,21 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Persona;
 
 import Department.Department;
 import java.util.ArrayList;
 
-/**
- *
- * @author kal bugrara
- */
+
 public class StudentDirectory {
 
     Department department;
     ArrayList<StudentProfile> studentlist;
+    private static final int MAX_STUDENTS = 10;
 
     public StudentDirectory(Department d) {
 
@@ -23,12 +17,16 @@ public class StudentDirectory {
         studentlist = new ArrayList<StudentProfile>();
 
     }
-
+    
     public StudentProfile newStudentProfile(Person p) {
-
-        StudentProfile sp = new StudentProfile(p);
-        studentlist.add(sp);
-        return sp;
+        if(studentlist.size() < MAX_STUDENTS) {
+            StudentProfile sp = new StudentProfile(p);
+            studentlist.add(sp);
+            return sp;
+        } else {
+            System.out.println("Maximum number of students reached for this program.");
+            return null;
+        }
     }
 
     public StudentProfile findStudent(String id) {

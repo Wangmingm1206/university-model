@@ -5,13 +5,13 @@
  */
 package WorkAreas;
 
+
 import Persona.Person;
+
 import java.util.ArrayList;
 
-/**
- *
- * @author kal bugrara
- */
+
+
 public class Workarea {
     
     Person person; //owner
@@ -21,8 +21,8 @@ public class Workarea {
     public Workarea(Person p){
         
         person = p;
-        inQueue = new ArrayList();
-        outQueue = new ArrayList();
+        inQueue = new ArrayList<>();
+        outQueue = new ArrayList<>();
         
         
     }

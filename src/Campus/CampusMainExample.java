@@ -1,35 +1,44 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Campus;
 
-/**
- *
- * @author kal bugrara
- */
+import java.util.ArrayList;
+
 public class CampusMainExample {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
-        /*
-        0. Create Address object  
-        1. create campus object
-        2. Create and add buildings
-        3. Create and floors
-        4. Create and add rooms
-        5. Assign sprinkers.
-        6. Write methods to determine is campus safe => are builinds safe etc.
-*/
+        // 0. Create Address object
+        Address address1 = new Address(123, "Main St", "12345", "40.7128, -74.0060");
+        
+        // 1. Create campus object
+        Campus myCampus = new Campus(null, address1);
 
+        // 2. Create and add buildings
+        Building building1 = new Building(1, address1);
+        myCampus.addBuilding(building1); 
 
+        // 3. Create and floors
+        Floor floor1 = new Floor(1, building1);
+        Floor floor2 = new Floor(2, building1);
+        building1.setFloors(new ArrayList<>() {{ add(floor1); add(floor2); }});
 
+        // 4. Create and add rooms
+        Classroom room101 = new Classroom(101, floor1);
+        Classroom room102 = new Classroom(102, floor1);
+        Classroom room201 = new Classroom(201, floor2);
+        Classroom room202 = new Classroom(202, floor2);
 
+        floor1.setRooms(new ArrayList<>() {{ add(room101); add(room102); }});
+        floor2.setRooms(new ArrayList<>() {{ add(room201); add(room202); }});
 
+        new Sprinkler("ModelA", "SN001");
+        new Sprinkler("ModelA", "SN002");
+
+        
+
+        // 6. Write methods to determine if campus is safe
+        if (myCampus.isCampusSafe()) {
+            System.out.println("The campus is safe.");
+        } else {
+            System.out.println("The campus is not safe.");
+        }
     }
-    
 }

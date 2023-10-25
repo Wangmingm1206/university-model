@@ -23,7 +23,7 @@ public class Employment {
     EmployerProfile employer;
     public Employment(String j){
         
-         relevantcourseoffers = new ArrayList();
+         relevantcourseoffers = new ArrayList<>();
         
     }
 

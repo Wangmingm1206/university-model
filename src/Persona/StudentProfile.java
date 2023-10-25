@@ -16,9 +16,9 @@ import java.util.ArrayList;
  */
 public class StudentProfile {
 
-    Person person;
-    Transcript transcript;
-    EmploymentHistroy employmenthistory;
+    private Person person;
+    private Transcript transcript;
+    private EmploymentHistroy employmenthistory;
 
     public StudentProfile(Person p) {
         person = p;

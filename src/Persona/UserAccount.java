@@ -5,6 +5,8 @@
  */
 package Persona;
 
+import CourseCatalog.Course;
+
 /**
  *
  * @author kal bugrara
@@ -22,6 +24,13 @@ public class UserAccount {
     
     public UserAccount(Person p){
         person = p;
+    }
+
+    public void registerCourse(Course course) {
+    }
+
+    public Person getPerson() {
+        return null;
     }
     
 }

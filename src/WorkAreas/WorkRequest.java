@@ -1,25 +1,51 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package WorkAreas;
 
 import Persona.Person;
 
-/**
- *
- * @author kal bugrara
- */
 public class WorkRequest {
-    String task;
-    Person performer;
-    Person originator;
+    private String task;
+    private Person performer;
+    private Person originator;
+    private String status;
     
-    WorkRequest(Person org, Person per, String t){
+    
+    public WorkRequest(Person org, Person per, String t){
         performer = per;
         originator = org;
         task = t;
+        status = "Pending";
     }
-    
+    public String getTask() {
+        return task;
+    }
+
+    public void setTask(String task) {
+        this.task = task;
+    }
+
+    public Person getPerformer() {
+        return performer;
+    }
+
+    public void setPerformer(Person performer) {
+        this.performer = performer;
+    }
+
+    public Person getOriginator() {
+        return originator;
+    }
+
+    public void setOriginator(Person originator) {
+        this.originator = originator;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }
+

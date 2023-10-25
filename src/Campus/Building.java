@@ -1,16 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Campus;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author kal bugrara
- */
+
 public class Building {
     private int number;
     private ArrayList<Floor> floors;
@@ -19,9 +12,9 @@ public class Building {
     
 
     public Building(int n, Address ad){
-        this.number = n;
-        this.address = ad;
-        this.floors = new ArrayList();
+        number = n;
+        address = ad;
+        floors = new ArrayList<>();
     
     }
     
@@ -32,7 +25,9 @@ public class Building {
     }
     public Boolean isBuildingSafe(){
         
-        //Building is safe if all floors are safe
+        for (Floor f: floors){
+            if(!f.isFloorSafe()) return false;
+        }//Building is safe if all floors are safe
         return true; //to be completed
     }
     public int getNumber() {
@@ -44,12 +39,10 @@ public class Building {
     }
 
     public ArrayList<Floor> getFloors() {
-        return floors;
+        return new ArrayList<>(floors);
     }
 
-    public void setFloors(ArrayList<Floor> floors) {
-        this.floors = floors;
-    }
+    
 
     public Address getAddress() {
         return address;
@@ -60,9 +53,13 @@ public class Building {
     }
     public void print(){
         System.out.println("Building: " + number + " " + address);
+        address.print();
         for(Floor f: floors){
             f.print();
         }
+    }
+
+    public void setFloors(ArrayList arrayList) {
     }
     
 }

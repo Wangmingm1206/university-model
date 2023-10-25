@@ -1,9 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
+
+import College.College;
 import CourseCatalog.Course;
 import CourseCatalog.CourseCatalog;
 import CourseSchedule.CourseLoad;
@@ -17,19 +14,14 @@ import Persona.StudentDirectory;
 import Persona.StudentProfile;
 import Persona.Transcript;
 
-/**
- *
- * @author kal bugrara
- */
+
 public class UniversityExample {
 
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String[] args) {
-        // TODO code application logic here
+        College college = new College("Northeastern University College of Engineering");
         Department department = new Department("Information Systems");
-      
+        college.addDepartment(department);
         
         StudentDirectory sd = department.getStudentDirectory();
         PersonDirectory pd = department.getPersonDirectory();
@@ -38,9 +30,10 @@ public class UniversityExample {
         Person archilPerson = pd.newPerson("0123", "Archil");
         StudentProfile archil = sd.newStudentProfile(archilPerson);
         
+        
         Transcript archilsTranscript = archil.getTranscript();
 
-        CourseLoad archilsSpring2024 = archilsTranscript.newCourseLoad("Spring2024");
+        CourseLoad archilsSpring2024 = archilsTranscript.newCourseLoad("Fall2023");
         CourseLoad archilsCurrentCourseLoad = archil.getCurrentCourseLoad();
 
 
@@ -49,17 +42,32 @@ public class UniversityExample {
         CourseCatalog courseCatalog = department.getCourseCatalog();
         Course info5001 = courseCatalog.newCourse("info5001", "Application Design & Modeling", 4);    
         Course info5100 = courseCatalog.newCourse("info5100", "Application Engineering Development", 4);
+        Course info5200 = courseCatalog.newCourse("info5200", "Data Science Fundamentals", 4);
+        Course info5300 = courseCatalog.newCourse("info5300", "Cloud Computing", 4);
+        Course info5400 = courseCatalog.newCourse("info5400", "Advanced DB Management", 4);
 
-        CourseSchedule csSpring2024 = department.newCourseSchedule("Spring2024");
+        CourseSchedule csFall2023 = department.newCourseSchedule("Fall2023");
         
-        CourseOffer info5001offerSpring2024 = csSpring2024.newCourseOffer("info5001");
-        CourseOffer info5100offerSpring2024 = csSpring2024.newCourseOffer("info5100");
+        CourseOffer info5001offerFall2023 = csFall2023.newCourseOffer("info5001");
+        CourseOffer info5100offerFall2023 = csFall2023.newCourseOffer("info5100");
+
+        CourseOffer info5200offerFall2023 = csFall2023.newCourseOffer("info5200");
+        CourseOffer info5300offerFall2023 = csFall2023.newCourseOffer("info5300");
+        CourseOffer info5400offerFall2023 = csFall2023.newCourseOffer("info5400");
         
-        info5001offerSpring2024.generateSeats(10); // This means 10 students can take this class
-        info5100offerSpring2024.generateSeats(5);
+        info5001offerFall2023.generateSeats(25); // This means 10 students can take this class
+        info5100offerFall2023.generateSeats(25);
+        info5200offerFall2023.generateSeats(25); 
+        info5300offerFall2023.generateSeats(25);
+        info5400offerFall2023.generateSeats(25);
+
         
-        SeatAssignment archilRegisteredForInfo5001inSpring2024 = info5001offerSpring2024.assignEmptySeat(archilsCurrentCourseLoad);
-        SeatAssignment archilRegisteredForInfo5100 = info5100offerSpring2024.assignEmptySeat(archilsCurrentCourseLoad);
+        SeatAssignment archilRegisteredForInfo5001inFall2023 = info5001offerFall2023.assignEmptySeat(archilsCurrentCourseLoad);
+        SeatAssignment archilRegisteredForInfo5100inFall2023 = info5100offerFall2023.assignEmptySeat(archilsCurrentCourseLoad);
+        SeatAssignment archilRegisteredForInfo5200inFall2023 = info5200offerFall2023.assignEmptySeat(archilsCurrentCourseLoad); 
+        SeatAssignment archilRegisteredForInfo5300inFall2023 = info5300offerFall2023.assignEmptySeat(archilsCurrentCourseLoad);
+        SeatAssignment archilRegisteredForInfo5400inFall2023 = info5400offerFall2023.assignEmptySeat(archilsCurrentCourseLoad);
+
         
 
         archil.printTranscript();
