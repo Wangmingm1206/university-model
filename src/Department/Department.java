@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Department;
 
 import CourseCatalog.Course;
@@ -13,6 +9,7 @@ import CourseSchedule.CourseSchedule;
 import Degree.Degree;
 import Employer.EmployerDirectory;
 import Persona.Faculty.FacultyDirectory;
+import Persona.Faculty.FacultyProfile;
 import Persona.Person.Faculty;
 import Persona.PersonDirectory;
 import Persona.StudentDirectory;
@@ -116,11 +113,11 @@ public class Department {
         if (co == null) {
             throw new IllegalArgumentException("Course offer not found.");
         }
-        co.assignEmptySeat(cl);
+        co.getEmptySeat();
 
     }
     public void assignFacultyToCourse(String facultyId, String courseId, String semester) {
-        Faculty faculty = facultydirectory.findFaculty(facultyId);
+        FacultyProfile faculty = facultydirectory.findTeachingFaculty(facultyId);
         if (faculty == null) {
             throw new IllegalArgumentException("Faculty not found.");
         }
@@ -132,10 +129,39 @@ public class Department {
         if (co == null) {
             throw new IllegalArgumentException("Course offer not found.");
         }
-        co.setFaculty(faculty);
+        co.assignFacultyToCourse(faculty);
     }
 	public FacultyDirectory getFacultyDirectory() {
-		return facultydirectory;
-	}
+        return facultydirectory;    
+    }	
+    public void printCourseScheduleForSemester(String semester) {
+        CourseSchedule cs = mastercoursecatalog.get(semester);
+        if (cs == null) {
+            throw new IllegalArgumentException("No Course Schedule found for this semester.");
+        }
+        System.out.println("Course Schedule for " + semester + ":");
+        for (CourseOffer co : cs.getAllCourseOffers()) {
+            String courseInfo = co.getCourse().getCourseByNumber() + " " + co.getCourse().getCourseName();
+            Faculty faculty = co.getFaculty();
+            String facultyName = (faculty != null) ? faculty.getName() : "Not Assigned";
+            int registeredStudents = co.getTotalSeats() - co.emptySeatsCount();
+            int emptySeats = co.emptySeatsCount();
+            System.out.println(courseInfo + " | Teacher: " + facultyName + " | Registered Students: " + registeredStudents + " | Empty Seats: " + emptySeats);
+        }
+    }
     
+        
+        
+        
+    public void initializeFacultyAndCourses() {
+        CourseSchedule csFall2023 = getCourseSchedule("Fall2023"); 
+        for (int i = 1; i <= 5; i++) {
+            String code = "info" + (5000 + i);
+            Course course = coursecatalog.getCourseByNumber(code);
+            CourseOffer courseOffer = csFall2023.newCourseOffer(code);
+            facultydirectory.getFacultyByIndex(i);  
+            courseOffer.generateSeats(25);
+        }
+
+    }
 }

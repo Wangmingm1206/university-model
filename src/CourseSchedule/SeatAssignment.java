@@ -2,16 +2,23 @@ package CourseSchedule;
 
 import CourseCatalog.Course;
 import Persona.Person.Faculty;
+import Persona.Person.Student;
+import Persona.StudentProfile;
 
 public class SeatAssignment {
     private float grade; // Numeric representation (e.g., A=4.0, A-=3.7)
     private Seat seat;
     private boolean liked; // true means liked, false means not liked
     private Faculty faculty;
+    private Student student;
+    private StudentProfile studentProfile;
 
-    public SeatAssignment(CourseLoad cl, Seat s) {
+
+    public SeatAssignment(CourseLoad cl, Seat s, StudentProfile studentProfile) { 
         this.seat = s;
+        this.studentProfile = studentProfile; 
     }
+    
 
     public void assignFaculty(Faculty faculty) {
         this.faculty = faculty;
@@ -29,8 +36,7 @@ public class SeatAssignment {
         this.liked = liked;
     }
 
-    public void assignSeatToStudent(CourseLoad cl) {
-    }
+    
 
     public float getGrade() {
         return grade;
@@ -47,9 +53,21 @@ public class SeatAssignment {
     public Seat getSeat() {
         return seat;
     }
+    
+    
+
+    public void assignGrade(float grade) {
+    if (grade < 0.0 || grade > 4.0) {  
+        System.out.println("Invalid grade. Please assign a grade between 0.0 and 4.0.");
+        return;
+    }
+    this.grade = grade;
+}
+
+
 
     public CourseOffer getCourseOffer() {
-        return seat.getCourseOffer();
+        return seat.getCourseoffer();
     }
 
     public Course getAssociatedCourse() {
@@ -61,17 +79,15 @@ public class SeatAssignment {
     }
 
     public void printSeatInfo() {
-        System.out.println(getAssociatedCourse().getCOurseNumber() + " " + getAssociatedCourse().getCourseName() 
+        System.out.println(getAssociatedCourse().getCourseByNumber() + " " + getAssociatedCourse().getCourseName() 
             + " | " + getCreditHours() + " credits | " 
             + "Grade: " + grade 
             + " | Faculty: " + faculty.getName()); // Assuming faculty has a getName() method
     }
 
-	public float GetCourseStudentScore() {
-		return 0;
-	}
+	
 
     public boolean isSeatOccupied() {
-        return false;
+        return seat.isOccupied();
     }
 }

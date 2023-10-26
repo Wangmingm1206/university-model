@@ -18,7 +18,7 @@ public class CampusMainExample {
         // 3. Create and floors
         Floor floor1 = new Floor(1, building1);
         Floor floor2 = new Floor(2, building1);
-        building1.setFloors(new ArrayList<>() {{ add(floor1); add(floor2); }});
+        
 
         // 4. Create and add rooms
         Classroom room101 = new Classroom(101, floor1);

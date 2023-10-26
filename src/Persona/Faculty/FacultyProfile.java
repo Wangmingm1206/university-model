@@ -2,6 +2,7 @@
 package Persona.Faculty;
 
 import Persona.*;
+import Persona.Person.Faculty;
 import CourseSchedule.CourseOffer;
 import java.util.ArrayList;
 
@@ -11,17 +12,20 @@ public class FacultyProfile {
     private Person person;
     private ArrayList <FacultyAssignment> facultyassignments; 
     
-    public FacultyProfile(Person string) {
+    public FacultyProfile(Person person) {
 
-        person = string;
-        facultyassignments = new ArrayList<>();
+        this.person = person;
+        this.facultyassignments = new ArrayList<>();
     }
     
-    public FacultyProfile(String name) {
+    public FacultyProfile(String id,String name) {
+        
+        this.person = new Faculty(id, name);
+        this.facultyassignments = new ArrayList<>();
     }
 
-    public Person getPerson(){
-        return person;
+    public Faculty getPerson(){
+        return (Faculty) person;
     }
 
     public  double getProfAverageOverallRating(){
@@ -34,9 +38,11 @@ public class FacultyProfile {
             sum = sum + fa.getRating();
             
         }
-        //divide by the total number of faculty assignments
+        if(facultyassignments.size() == 0) {
+            return 0.0;
+        }
         
-        return sum/(facultyassignments.size()*1.0); //this ensure we have double/double
+        return sum/facultyassignments.size(); //this ensure we have double/double
         
     }
 
@@ -44,12 +50,17 @@ public class FacultyProfile {
         
         FacultyAssignment fa = new FacultyAssignment(this, co);
         facultyassignments.add(fa);
-        
+        co.assignFacultyToCourse(this);
         return fa;
     }
     
-    public FacultyProfile getCourseOffer(String courseid){
-        return null; //complete it later
+    public CourseOffer getCourseOffer(String courseid){
+        for(FacultyAssignment fa : facultyassignments) {
+            if(fa.getCourseOffer().getCourseByNumber().equals(courseid)) {
+                return fa.getCourseOffer();
+            }
+        }
+        return null; 
     }
     public ArrayList<FacultyAssignment> getCoursesTaughtThisSemester() {
         
@@ -58,10 +69,8 @@ public class FacultyProfile {
 
 
     public boolean isMatch(String id) {
-        if (person.getPersonId().equals(id)) {
-            return true;
-        }
-        return false;
+        
+        return person.getPersonId().equals(id);
     }
 
 }

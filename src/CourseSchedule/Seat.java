@@ -1,14 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package CourseSchedule;
 
-/**
- *
- * @author kal bugrara
- */
+import Persona.StudentProfile;
+import Persona.Person.Student;
+
 public class Seat {
     
     private Boolean occupied; 
@@ -16,15 +10,13 @@ public class Seat {
     private SeatAssignment seatassignment; //links back to studentprofile
     private CourseOffer courseoffer;
     
-    
-
     public Seat (CourseOffer co, int n){
         this.courseoffer = co;
         this.number = n;
         this.occupied = false;
-        
     }
-    public Boolean getOccupied() {
+    
+    public Boolean isOccupied() {
         return occupied;
     }
 
@@ -56,21 +48,21 @@ public class Seat {
         this.courseoffer = courseoffer;
     }
 
-    public Boolean isOccupied(){
-        return occupied;
-
-    }
-    public SeatAssignment newSeatAssignment(CourseLoad cl){
-        
-        seatassignment = new SeatAssignment(cl, this); //links seatassignment to seat
-        occupied = true;   
-        return seatassignment;
-    }
-    public CourseOffer getCourseOffer(){
-        return courseoffer;
-    }
     public int getCourseCredits(){
         return courseoffer.getCreditHours();
     }
+
+    public SeatAssignment newSeatAssignment(CourseLoad cl, StudentProfile student) {        
+        seatassignment = new SeatAssignment(cl, this, student); //links seatassignment to seat
+        occupied = true;   
+        return seatassignment;
+    }
     
+    public void assignToStudent(StudentProfile student, CourseLoad cl) {
+        newSeatAssignment(cl, student); // Use the method to make sure everything is properly linked and set
+    }
+
+    public void markAsOccupied() {
+        occupied = true;
+    }
 }

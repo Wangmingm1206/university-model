@@ -26,8 +26,8 @@ public class DepartmentAccount {
         for(CourseOffer co : css.getAllCourseOffers()) {
             System.out.println("Course Name: " + co.getCourse().getCourseName());
             System.out.println("Faculty: " + co.getFaculty().getName());
-            System.out.println("Registered Students: " + co.getNumberOfRegisteredStudents());
-            System.out.println("Remaining Seats: " + co.getRemainingSeats());
+            System.out.println("Registered Students: " + co.getRegisteredStudentsCount());
+            System.out.println("Remaining Seats: " + co.emptySeatsCount());
             System.out.println("-------------------------------");
         }
     }

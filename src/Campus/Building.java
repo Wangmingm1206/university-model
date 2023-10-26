@@ -41,7 +41,7 @@ public class Building {
     public ArrayList<Floor> getFloors() {
         return new ArrayList<>(floors);
     }
-
+    
     
 
     public Address getAddress() {
@@ -52,14 +52,14 @@ public class Building {
         this.address = address;
     }
     public void print(){
-        System.out.println("Building: " + number + " " + address);
+        System.out.println("Building: " + number);
         address.print();
         for(Floor f: floors){
             f.print();
         }
-    }
+    
+}
 
-    public void setFloors(ArrayList<>) {
-    }
+    
     
 }

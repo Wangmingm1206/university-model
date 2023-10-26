@@ -1,67 +1,55 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package CourseSchedule;
 
+import Persona.Person.Student;
+import Persona.StudentProfile;
 import java.util.ArrayList;
 
-import CourseCatalog.Course;
-
-/**
- *
- * @author kal bugrara
- */
 public class CourseLoad {
-    private String semester;
-    private ArrayList<SeatAssignment> seatassignments;
     
-    public CourseLoad(String s){
-        seatassignments = new ArrayList<SeatAssignment>();
-        semester = s;
-    }
-    public SeatAssignment newSeatAssignment(CourseOffer co){
-        
-        Seat seat = co.getEmptySeat(); // seat linked to courseoffer
-        if (seat==null) return null;
-        SeatAssignment sa = seat.newSeatAssignment(this);
-        seatassignments.add(sa);  //add to students course 
-        return sa;
-    }
+    String semester;
+    ArrayList<SeatAssignment> seatlist;
     
-    public void registerStudent(SeatAssignment sa){
-        sa.assignSeatToStudent(this);
-        seatassignments.add(sa);
+    public CourseLoad(String semester) {
+        this.semester = semester;
+        seatlist = new ArrayList<>();
     }
-    
-    public float getSemesterScore(){ //total score for a full semeter
+
+    public SeatAssignment registerStudentForCourse(CourseOffer co, StudentProfile sp) {
+        // Check if the course offer has empty seats
+        if (co.getEmptySeatsCount() > 0) {
+            // New seat assignment will assign the seat to student and return the seat assignment
+            boolean isAssigned = co.newSeatAssignment(this, sp);
+            if (isAssigned) {
+                // Retrieve the newly assigned seat
+                Seat seat = co.getEmptySeat();
+                // Create seat assignment for the student and the course load
+                if (sp.getPerson() instanceof Student) {
+                    Student student = (Student) sp.getPerson();
+                    SeatAssignment sa = new SeatAssignment(this, seat, student);
+                    seatlist.add(sa);
+            
+                return sa;
+            }
+        }
+        return null;  // No seats available
+    }
+
+    public float getSemesterScore() {
         float sum = 0;
-        for (SeatAssignment sa: seatassignments){
-            sum = sum + sa.GetCourseStudentScore();
+        for (SeatAssignment sa : seatlist) {
+            sum = sum + sa.getCourseStudentScore();
         }
         return sum;
     }
-    public ArrayList<SeatAssignment> getSeatAssignments(){
-        return seatassignments;
-        }
-    public int getEmptySeatsCount() {
-        int count = 0;
-        for (SeatAssignment sa : seatassignments) {
-            if (!sa.isSeatOccupied()) {
-                count++;
-                }
-            }
-            return count;
-        } 
-    public void print(){
-        System.out.println("Semester: "+semester);
-        for (SeatAssignment eachRegistredSeat: seatassignments){
-            System.out.print(seatassignments.indexOf(eachRegistredSeat)+1 + ". ");
-            eachRegistredSeat.printSeatInfo();
-        }
-    }
-    public void addCourse(Course course) {
+
+    public ArrayList<SeatAssignment> getSeatAssignments() {
+        return seatlist;
     }
 
+    public void print() {
+        System.out.println("-- Registered courses in " + semester + " --");
+        for (SeatAssignment sa : seatlist) {
+            sa.printSeatInfo();
+        }
+    }
 }

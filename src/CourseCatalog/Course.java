@@ -31,7 +31,7 @@ public class Course {
     private void calculateTotalPrice(){
         this.totalPrice = this.price * this.credits;
     }
-    public String getCOurseNumber() {
+    public String getCourseByNumber() {
         return number;
     }
 
@@ -61,4 +61,6 @@ public class Course {
     public void print(){
         System.out.println("Course: " + number + " " + name + " " + credits + " " + totalPrice);
     }
+
+
 }

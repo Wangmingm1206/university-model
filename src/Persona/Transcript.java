@@ -1,4 +1,3 @@
-
 package Persona;
 
 import CourseSchedule.CourseLoad;
@@ -8,100 +7,69 @@ import java.util.HashMap;
 
 import CourseCatalog.Course;
 
-
 public class Transcript {
 
     private StudentProfile student;
     private HashMap<String, CourseLoad> courseloadlist;
+    private final String FALL_2023 = "Fall 2023";
 
     CourseLoad currentcourseload;
 
-    public Transcript(StudentProfile userAccount) {
-        student = userAccount;
-        courseloadlist = new HashMap<String, CourseLoad>();
+    public Transcript(StudentProfile studentProfile) {
+        this.student = studentProfile;
+        this.courseloadlist = new HashMap<>();
     }
-
-
-
-
-
-    public Transcript(UserAccount userAccount) {
-    }
-
-
-
-
 
     public StudentProfile getStudentProfile() {
         return student;
     }
-    
-    public static void assignGrade(Course course, String grade) {
-        Transcript.assignGrade(course, grade);
-    }
-    
 
-    public CourseLoad newCourseLoad(String semester) {
-
-        currentcourseload = new CourseLoad(semester);
-        courseloadlist.put(semester, currentcourseload);
+    public CourseLoad newCourseLoad() {
+        if (!courseloadlist.containsKey(FALL_2023)) {
+            currentcourseload = new CourseLoad(FALL_2023);
+            courseloadlist.put(FALL_2023, currentcourseload);
+        } else {
+            currentcourseload = courseloadlist.get(FALL_2023);
+        }
         return currentcourseload;
     }
 
     public CourseLoad getCurrentCourseLoad() {
-
         return currentcourseload;
-
-    }
-
-    public CourseLoad getCourseLoadBySemester(String semester) {
-
-        return courseloadlist.get(semester);
-
     }
 
     public float getStudentTotalScore() {
-
         float sum = 0;
-
         for (CourseLoad cl : courseloadlist.values()) {
-            sum = sum + cl.getSemesterScore();
-
+            sum += cl.getSemesterScore();
         }
         return sum;
     }
-    //sat index means student rated their courses with likes;
+
     public int getStudentSatifactionIndex() {
         ArrayList<SeatAssignment> courseregistrations = getCourseList();
         int sum = 0;
         for (SeatAssignment sa : courseregistrations) {
-
             if (sa.getLiked()) {
-                sum = sum + 1;
+                sum += 1;
             }
         }
         return sum;
     }
-    //generate a list of all courses taken so far (seetassignments) 
-    //from multiple semesters (course loads)
-    //from seat assignments we will be able to access the course offers
 
     public ArrayList<SeatAssignment> getCourseList() {
         ArrayList<SeatAssignment> temp2 = new ArrayList<>();
-
-        for (CourseLoad cl : courseloadlist.values()) { //extract cl list as objects --ignore label
-            temp2.addAll(cl.getSeatAssignments()); //merge one array list to another
+        for (CourseLoad cl : courseloadlist.values()) {
+            temp2.addAll(cl.getSeatAssignments());
         }
-
         return temp2;
-
     }
 
-    public void print(){
+    public void print() {
         System.out.println("------- Student transcript --------- ");
         for (CourseLoad eachCourseload : courseloadlist.values()) {
             eachCourseload.print();
-        }   
+        }
     }
 
 }

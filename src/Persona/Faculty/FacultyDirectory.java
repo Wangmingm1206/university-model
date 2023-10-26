@@ -10,33 +10,33 @@ public class FacultyDirectory {
     
     private Department department;
     private ArrayList<FacultyProfile> teacherlist;
-    private ArrayList<FacultyAssignment> facultyAssignments; // List to store faculty assignments
+    private ArrayList<FacultyAssignment> facultyAssignments; 
 
     public FacultyDirectory(Department d) {
         department = d;
         teacherlist = new ArrayList<>();
-        facultyAssignments = new ArrayList<>();  // Initialize faculty assignments list
+        facultyAssignments = new ArrayList<>();  
     }
 
     public FacultyDirectory() {
         teacherlist = new ArrayList<>();
-        facultyAssignments = new ArrayList<>();  // Initialize faculty assignments list
+        facultyAssignments = new ArrayList<>();  
     }
 
-    public FacultyProfile newFacultyProfile(String string) {
-        FacultyProfile sp = new FacultyProfile(string);
+    public FacultyProfile newFacultyProfile(String id, String name) {
+        FacultyProfile sp = new FacultyProfile(id, name);
         teacherlist.add(sp);
         return sp;
     }
     
-    // Assign a faculty to a course offer
+    
     public FacultyAssignment assignFacultyToCourseOffer(FacultyProfile fp, CourseOffer co) {
         FacultyAssignment fa = new FacultyAssignment(fp, co);
         facultyAssignments.add(fa);
         return fa;
     }
 
-    // Find the top professor based on ratings
+    
     public FacultyProfile getTopProfessor(){
         double bestratingsofar = 0.0;
         FacultyProfile bestProfSofar = null;
@@ -48,7 +48,7 @@ public class FacultyDirectory {
         return bestProfSofar;
     }
 
-    // Find a faculty by ID
+    
     public FacultyProfile findTeachingFaculty(String id) {
         for (FacultyProfile sp : teacherlist) {
             if (sp.isMatch(id)) {
@@ -58,7 +58,7 @@ public class FacultyDirectory {
         return null;
     }
 
-    // Print the course schedule for faculty
+    
     public void printFacultyCourseSchedule(String facultyID) {
         System.out.println("Course Schedule for Faculty ID: " + facultyID);
         for(FacultyAssignment fa: facultyAssignments) {
@@ -68,15 +68,12 @@ public class FacultyDirectory {
         }
     }
 
-    public Faculty findFaculty(String facultyId) {
-        return null;
+    public FacultyProfile getFacultyByIndex(int i) {
+        if(i >= 0 && i < teacherlist.size()) {
+            return teacherlist.get(i);
+        }
+        return null; 
     }
 
-
-
-    public Faculty getFacultyByIndex(int i) {
-        return null;
-    }
-
-    // Additional methods can be added as per further requirements
+    
 }

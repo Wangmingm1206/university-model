@@ -5,6 +5,7 @@ import Persona.Person;
 import Persona.Faculty.FacultyAssignment;
 import Persona.Faculty.FacultyProfile;
 import Persona.Person.Faculty;
+import Persona.StudentProfile;
 
 import java.util.ArrayList;
 
@@ -13,7 +14,7 @@ public class CourseOffer {
     private Course course;
     private ArrayList<Seat> seatlist;
     private FacultyAssignment facultyassignment;
-    private CourseOffer courseOffer;
+    // private CourseOffer courseOffer;
 
     public CourseOffer(Course c) {
         course = c;
@@ -28,8 +29,8 @@ public class CourseOffer {
         return facultyassignment.getFacultyProfile();
     }
 
-    public String getCourseNumber() {
-        return course.getCOurseNumber();
+    public String getCourseByNumber() {
+        return course.getCourseByNumber();
     }
 
     public Course getCourse() {
@@ -37,8 +38,8 @@ public class CourseOffer {
     }
 
 
-    public void generateSeats(int n) {
-        for (int i = 0; i < n; i++) {
+    public void generateSeats(int num) {
+        for (int i = 0; i < num; i++) {
             seatlist.add(new Seat(this, i));
         }
     }
@@ -67,15 +68,23 @@ public class CourseOffer {
     }
 
     
-    // public int getTotalCourseRevenues() {
-        // int sum = 0;
-        // for (Seat s : seatlist) {
-            // if (s.isOccupied()) {
-                // sum = sum + course.getCoursePrice();
-            // }
-        // }
-        // return sum;
-    // }
+    public int calculateTotalRevenues() {
+        int sum = 0;
+        for (Seat s : seatlist) {
+            if (s.isOccupied()) {
+                sum = sum + course.getCoursePrice();
+            }
+        }
+        return sum;
+    }
+    
+    public Faculty getFaculty() {
+        if (facultyassignment != null) {
+            return (Faculty) facultyassignment.getFacultyProfile().getPerson();
+        }
+            return null; 
+        }
+
     
     public Course getSubjectCourse(){
         return course;
@@ -89,49 +98,64 @@ public class CourseOffer {
         return 0;
     }
 
-    public void assignFaulty(Faculty faculty) {
-    }
-
-    public void createSeats(int i) {
-    }
-
-    public Person getFaculty() {
-        return null;
-    }
-
-    public String getRegisteredStudentsCount() {
-        return null;
-    }
-
-    public String getEmptySeatsCount() {
-        return null;
-    }
-
-    public void setFaculty(Faculty faculty) {
-    }
-
-    public SeatAssignment assignEmptySeat(CourseLoad cl) {
-        return null;
-    }
-
-    public String getNumberOfRegisteredStudents() {
-        return null;
-    }
-
-    public String getRemainingSeats() {
-        return null;
-    }
-
-    public int getTotalCourseRevenues() {
-        return 0;
-    }
-    Person faculty = courseOffer.getFaculty();{
-    if (faculty != null) {
-    String name = faculty.getName();
-    System.out.println("Faculty assigned for this course offer: " + name);
-    } else {
-        System.out.println("No faculty assigned for this course offer.");
+    
+    
+    public void printFacultyAssigned() {
+        Faculty faculty = this.getFaculty(); 
+        if (faculty != null) {
+            String name = faculty.getName();
+            System.out.println("Faculty assigned for this course offer: " + name);
+        } else {
+            System.out.println("No faculty assigned for this course offer.");
     }
 }
 
 
+    public void assignFacultyToCourse(FacultyProfile facultyProfile) {
+    }
+
+    public int getTotalSeats() {
+        return seatlist.size();
+    }
+
+    public int getRegisteredStudentsCount() {
+        return registeredStudentsCount();
+    }
+
+    public int getEmptySeatsCount() {
+        return emptySeatsCount();
+    }
+    
+    public boolean newSeatAssignment(CourseLoad cl, StudentProfile student) {
+        Seat seat = getEmptySeat();
+        if (seat != null) {
+            seat.assignToStudent(student, cl);
+            seat.markAsOccupied();
+            return true; // successful assignment
+        }
+        return false; // no empty seats available
+    }
+
+
+
+    public void printCourseOffer() {
+        System.out.println("Course: " + course.getCourseName());
+        System.out.println("Course Number: " + course.getCourseByNumber());
+        
+        if (facultyassignment != null) {
+            System.out.println("Faculty: " + facultyassignment.getFacultyProfile().getPerson().getName());
+        } else {
+            System.out.println("Faculty: Not assigned");
+        }
+        
+        System.out.println("Registered Students: " + registeredStudentsCount());
+        System.out.println("Remaining Seats: " + emptySeatsCount());
+        System.out.println("----------------------------");
+    }
+    
+
+    
+
+
+
+}

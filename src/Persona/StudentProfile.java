@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Persona;
 
 import CourseSchedule.CourseLoad;
@@ -10,10 +6,7 @@ import CourseSchedule.SeatAssignment;
 import Persona.EmploymentHistory.EmploymentHistroy;
 import java.util.ArrayList;
 
-/**
- *
- * @author kal bugrara
- */
+
 public class StudentProfile {
 
     private Person person;
@@ -24,7 +17,13 @@ public class StudentProfile {
         person = p;
         transcript = new Transcript(this);
         employmenthistory = new EmploymentHistroy();
+        newCourseLoad("Fall2023");
     }
+    public Person getPerson() {
+        return this.person; // assuming you have a `person` field in StudentProfile class
+    }
+    
+
 
     public boolean isMatch(String id) {
         return person.getPersonId().equals(id);

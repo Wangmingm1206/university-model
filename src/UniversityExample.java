@@ -7,68 +7,113 @@ import CourseSchedule.CourseSchedule;
 import CourseSchedule.SeatAssignment;
 import Department.Department;
 import Persona.Person;
-import Persona.Person.Faculty;
+import Persona.StudentProfile;
 import Persona.PersonDirectory;
 import Persona.StudentDirectory;
-import Persona.StudentProfile;
-import Persona.Transcript;
 import Persona.Faculty.FacultyDirectory;
+import Persona.Faculty.FacultyProfile;
 
 public class UniversityExample {
 
     public static void main(String[] args) {
+        // Part 1 - Populating the model
         College college = new College("Northeastern University College of Engineering");
         Department department = new Department("Information Systems");
         college.addDepartment(department);
 
         FacultyDirectory fd = department.getFacultyDirectory();
-        for (int i = 0; i < 5; i++) {
-            fd.newFacultyProfile("Faculty " + (i + 1));
+        
+        for (int j = 0; j < 5; j++) {
+            fd.newFacultyProfile("FID" + (j + 1), "Faculty " + (j + 1));
         }
 
         StudentDirectory sd = department.getStudentDirectory();
         PersonDirectory pd = department.getPersonDirectory();
-        for (int i = 0; i < 10; i++) {
-            Person studentPerson = pd.newPerson("ID" + (i + 1), "Student " + (i + 1));
+
+        for (int j = 0; j < 10; j++) {
+            String studentId = "ID" + (j + 1);
+            String studentName = "Student " + (j + 1);
+            Person studentPerson = pd.newPerson(studentId, studentName);
+
+
+            
             sd.newStudentProfile(studentPerson);
         }
 
         CourseCatalog courseCatalog = department.getCourseCatalog();
         courseCatalog.newCourse("info5001", "Application Design & Modeling", 4);
-        courseCatalog.newCourse("info5100", "Application Engineering Development", 4);
-        courseCatalog.newCourse("info5200", "Data Science Fundamentals", 4);
-        courseCatalog.newCourse("info5300", "Cloud Computing", 4);
-        courseCatalog.newCourse("info5400", "Advanced DB Management", 4);
+        courseCatalog.newCourse("info5002", "Application Engineering Development", 4);
+        courseCatalog.newCourse("info5003", "Data Science Fundamentals", 4);
+        courseCatalog.newCourse("info5004", "Cloud Computing", 4);
+        courseCatalog.newCourse("info5005", "Advanced DB Management", 4);
 
+        // Part 2 - Populating the model (cont.)
         CourseSchedule csFall2023 = department.newCourseSchedule("Fall2023");
 
-        for (int i = 1; i <= 5; i++) {
-            String code = "info" + (5000 + i);
+        for (int j = 0; j < 5; j++) {
+            String code = "info" + (5000 + (j + 1) );
             Course course = courseCatalog.getCourseByNumber(code);
+            if(course == null) {
+                System.out.println("Course not found for code: " + code);
+                continue;
+            }
+            
+            
             CourseOffer courseOffer = csFall2023.newCourseOffer(code);
-            courseOffer.setFaculty(fd.getFaculty(i - 1)); // Assuming indexing starts from 0
-            courseOffer.createSeats(25);
+            if (courseOffer == null) {
+                System.out.println("Failed to create CourseOffer for code: " + code);
+                continue;
+            }
+            courseOffer.generateSeats(25);
+
+            FacultyProfile facultyProfile = fd.getFacultyByIndex(j);
+            if(facultyProfile != null) {
+                courseOffer.AssignAsTeacher(facultyProfile);
+            } else {
+                System.out.println("Faculty not found for index: " + j);
+            }
+
+            courseOffer.AssignAsTeacher(facultyProfile);
         }
-        
 
         for (StudentProfile student : sd.getAllStudentProfiles()) {
-            for (int j = 1; j <= 5; j++) {
-                String code = "info" + (5000 + j);
+            CourseLoad cl = student.getCurrentCourseLoad();
+
+            for (int j = 0; j < 5; j++) {
+                String code = "info" + (5000 + (j + 1));
                 CourseOffer offer = csFall2023.getCourseOfferByNumber(code);
-                if(offer == null) {
-                    System.out.println("Course offer not found for code: " + code);
-                    continue;
-                }
-                SeatAssignment seat = offer.assignEmptySeat(student.getCurrentCourseLoad());
-                if (seat != null) {
-                    Assuming grade assignment happens later, placeholder set for now
-                    seat.setGrade("TBD");
+                int seatCount = offer.emptySeatsCount();
+                if (seatCount > 0) {
+                    offer.newSeatAssignment(cl, student);
                 }
             }
         }
 
+        // Part 3 – Program Analytics
         csFall2023.printCourseSchedule();
-        double revenue = csFall2023.calculateTotalRevenue(1000);
-        System.out.println("Total Revenue for Fall 2023: $" + revenue);
+
+        for (StudentProfile studentProfile : sd.getAllStudentProfiles()) {
+            CourseLoad cl = studentProfile.getCurrentCourseLoad();
+            
+        if (cl != null) {
+            for (SeatAssignment seatAssignment : cl.getSeatAssignments()) {
+                seatAssignment.assignGrade(3.5f);
+            }
+        } else {
+            System.out.println("Warning: CourseLoad is null for student: " + studentProfile.getPerson().getName());
+        }
+                
+    }        
+
+        int revenue = calculateTotalRevenues(csFall2023, 1000);
+        System.out.println("Total Revenue for Fall 2023: $" + revenue);}        
+    
+
+    private static int calculateTotalRevenues(CourseSchedule csFall2023, int pricePerCourse) {
+        int totalRevenue = 0;
+        for (CourseOffer offer : csFall2023.getAllCourseOffers()) {
+            totalRevenue += offer.registeredStudentsCount() * pricePerCourse;
+        }
+        return totalRevenue;
     }
 }
