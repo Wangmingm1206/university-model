@@ -14,6 +14,7 @@ public class CourseOffer {
     private Course course;
     private ArrayList<Seat> seatlist;
     private FacultyAssignment facultyassignment;
+    private final int TotalSeats = 25;
     // private CourseOffer courseOffer;
 
     public CourseOffer(Course c) {
@@ -63,8 +64,8 @@ public class CourseOffer {
         return count;
     }
 
-    public int emptySeatsCount() {
-        return seatlist.size() - registeredStudentsCount();
+    public int getemptySeatsCount() {
+        return TotalSeats - registeredStudentsCount();
     }
 
     
@@ -122,9 +123,7 @@ public class CourseOffer {
         return registeredStudentsCount();
     }
 
-    public int getEmptySeatsCount() {
-        return emptySeatsCount();
-    }
+    
     
     public boolean newSeatAssignment(CourseLoad cl, StudentProfile student) {
         Seat seat = getEmptySeat();
@@ -149,7 +148,7 @@ public class CourseOffer {
         }
         
         System.out.println("Registered Students: " + registeredStudentsCount());
-        System.out.println("Remaining Seats: " + emptySeatsCount());
+        System.out.println("Remaining Seats: " + getemptySeatsCount());
         System.out.println("----------------------------");
     }
     

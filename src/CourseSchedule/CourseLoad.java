@@ -16,20 +16,19 @@ public class CourseLoad {
 
     public SeatAssignment registerStudentForCourse(CourseOffer co, StudentProfile sp) {
         // Check if the course offer has empty seats
-        if (co.getEmptySeatsCount() > 0) {
-            // New seat assignment will assign the seat to student and return the seat assignment
+        if (co.getemptySeatsCount() > 0) {
+            Seat seatToAssign = co.getEmptySeat();
             boolean isAssigned = co.newSeatAssignment(this, sp);
             if (isAssigned) {
-                // Retrieve the newly assigned seat
-                Seat seat = co.getEmptySeat();
-                // Create seat assignment for the student and the course load
+                
+                
+                
                 if (sp.getPerson() instanceof Student) {
                     Student student = (Student) sp.getPerson();
-                    SeatAssignment sa = new SeatAssignment(this, seat, student);
-                    seatlist.add(sa);
-            
-                return sa;
+                    return sa;
+                }
             }
+
         }
         return null;  // No seats available
     }

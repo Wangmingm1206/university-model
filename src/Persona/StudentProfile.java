@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class StudentProfile {
 
+    private static final String Fall2023 = "Fall2023";
     private Person person;
     private Transcript transcript;
     private EmploymentHistroy employmenthistory;
@@ -43,7 +44,7 @@ public class StudentProfile {
 
     public CourseLoad newCourseLoad(String s) {
 
-        return transcript.newCourseLoad(s);
+        return transcript.newCourseLoad();
     }
 
     public ArrayList<SeatAssignment> getCourseList() {
@@ -54,9 +55,16 @@ public class StudentProfile {
         System.out.println("Student name, id: " + person.getName() + ", " + person.getPersonId());
     }
 
-    public void printTranscript() {
+    public void printTranscriptForFall2023() {
         printStudentNameAndID();
-        transcript.print();
+        CourseLoad courseLoadForFall2023 = transcript.getCourseLoadBySemester(Fall2023);
+        if(courseLoadForFall2023 != null) {
+            courseLoadForFall2023.print();
+        } else {
+            System.out.println("No courses registered for Fall 2023.");
+        }
     }
+    
+
 
 }

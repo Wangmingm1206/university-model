@@ -144,13 +144,16 @@ public class Department {
             String courseInfo = co.getCourse().getCourseByNumber() + " " + co.getCourse().getCourseName();
             Faculty faculty = co.getFaculty();
             String facultyName = (faculty != null) ? faculty.getName() : "Not Assigned";
-            int registeredStudents = co.getTotalSeats() - co.emptySeatsCount();
-            int emptySeats = co.emptySeatsCount();
+            int registeredStudents = co.getTotalSeats() - co.getemptySeatsCount();
+            int emptySeats = co.getemptySeatsCount();
             System.out.println(courseInfo + " | Teacher: " + facultyName + " | Registered Students: " + registeredStudents + " | Empty Seats: " + emptySeats);
         }
     }
     
-        
+    public void printDepartmentName() {
+        System.out.println("Department Name: " + name);
+    }
+    
         
         
     public void initializeFacultyAndCourses() {

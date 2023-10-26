@@ -27,7 +27,7 @@ public class DepartmentAccount {
             System.out.println("Course Name: " + co.getCourse().getCourseName());
             System.out.println("Faculty: " + co.getFaculty().getName());
             System.out.println("Registered Students: " + co.getRegisteredStudentsCount());
-            System.out.println("Remaining Seats: " + co.emptySeatsCount());
+            System.out.println("Remaining Seats: " + co.getemptySeatsCount());
             System.out.println("-------------------------------");
         }
     }

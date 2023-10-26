@@ -12,9 +12,11 @@ public class SeatAssignment {
     private Faculty faculty;
     private Student student;
     private StudentProfile studentProfile;
+    private CourseLoad courseLoad;
 
 
     public SeatAssignment(CourseLoad cl, Seat s, StudentProfile studentProfile) { 
+        this.courseLoad = cl;
         this.seat = s;
         this.studentProfile = studentProfile; 
     }

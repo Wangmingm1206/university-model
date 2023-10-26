@@ -5,6 +5,7 @@ import CourseSchedule.CourseLoad;
 import CourseSchedule.CourseOffer;
 import CourseSchedule.CourseSchedule;
 import CourseSchedule.SeatAssignment;
+import Degree.Degree;
 import Department.Department;
 import Persona.Person;
 import Persona.StudentProfile;
@@ -18,8 +19,11 @@ public class UniversityExample {
     public static void main(String[] args) {
         // Part 1 - Populating the model
         College college = new College("Northeastern University College of Engineering");
+        college.printCollegeName(); 
         Department department = new Department("Information Systems");
+        department.printDepartmentName(); 
         college.addDepartment(department);
+        
 
         FacultyDirectory fd = department.getFacultyDirectory();
         
@@ -82,7 +86,7 @@ public class UniversityExample {
             for (int j = 0; j < 5; j++) {
                 String code = "info" + (5000 + (j + 1));
                 CourseOffer offer = csFall2023.getCourseOfferByNumber(code);
-                int seatCount = offer.emptySeatsCount();
+                int seatCount = offer.getemptySeatsCount();
                 if (seatCount > 0) {
                     offer.newSeatAssignment(cl, student);
                 }
@@ -105,7 +109,7 @@ public class UniversityExample {
                 
     }        
 
-        int revenue = calculateTotalRevenues(csFall2023, 1000);
+        int revenue = calculateTotalRevenues(csFall2023, 6000);
         System.out.println("Total Revenue for Fall 2023: $" + revenue);}        
     
 

@@ -67,9 +67,14 @@ public class CourseSchedule {
     }
 
 
+    
+
+
+
     public void printCourseSchedule() {
         
-        System.out.println("Course Schedule for " + semester);
+        System.out.println("Course Schedule for " + this.semester);
+        
         System.out.println("------------------------------------");
 
         
@@ -84,12 +89,18 @@ public class CourseSchedule {
             }
             
             System.out.println("Registered Students: " + co.getRegisteredStudentsCount()); // You'll need to implement this
-            System.out.println("Remaining Seats: " + co.getEmptySeatsCount()); // You'll need to implement this
+            System.out.println("Remaining Seats: " + co.getemptySeatsCount()); // You'll need to implement this
             System.out.println("----------------------------");
         }
     }
-
     
-
     
+        
+        
 }
+
+    
+    
+
+    
+

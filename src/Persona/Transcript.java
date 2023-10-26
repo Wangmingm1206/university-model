@@ -34,6 +34,10 @@ public class Transcript {
         return currentcourseload;
     }
 
+    public CourseLoad getCourseLoadBySemester(String semester) {
+        return courseloadlist.get(semester);
+    }
+    
     public CourseLoad getCurrentCourseLoad() {
         return currentcourseload;
     }
