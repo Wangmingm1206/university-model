@@ -24,7 +24,9 @@ public class CourseLoad {
                 
                 
                 if (sp.getPerson() instanceof Student) {
-                    Student student = (Student) sp.getPerson();
+                    
+                    SeatAssignment sa = new SeatAssignment(this, seatToAssign, sp);
+                    seatlist.add(sa);
                     return sa;
                 }
             }

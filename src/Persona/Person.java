@@ -31,20 +31,20 @@ public class Person {
     }
     
     
-    public static class Student extends Person {
-        private double grade;
+        public static class Student extends Person {
+            private double grade;
 
         public Student(String id, String name) {
             super(id, name);
         }
 
-        public double getGrade() {
-            return grade;
-        }
+        // public double getGrade() {
+        //     return grade;
+        // }
 
-        public void setGrade(double grade) {
-            this.grade = grade;
-        }
+        // public void setGrade(double grade) {
+        //     this.grade = grade;
+        // }
 
         
     }

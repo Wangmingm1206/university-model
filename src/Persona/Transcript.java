@@ -12,11 +12,13 @@ public class Transcript {
     private StudentProfile student;
     private HashMap<String, CourseLoad> courseloadlist;
     private final String FALL_2023 = "Fall 2023";
+    private UserAccount userAccount;
 
     CourseLoad currentcourseload;
 
     public Transcript(StudentProfile studentProfile) {
         this.student = studentProfile;
+        this.userAccount = userAccount;
         this.courseloadlist = new HashMap<>();
     }
 
@@ -24,7 +26,7 @@ public class Transcript {
         return student;
     }
 
-    public CourseLoad newCourseLoad() {
+    public CourseLoad newCourseLoad(String semester) {
         if (!courseloadlist.containsKey(FALL_2023)) {
             currentcourseload = new CourseLoad(FALL_2023);
             courseloadlist.put(FALL_2023, currentcourseload);

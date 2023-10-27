@@ -4,6 +4,7 @@ import CourseCatalog.Course;
 import Persona.Person.Faculty;
 import Persona.Person.Student;
 import Persona.StudentProfile;
+import java.util.Random;
 
 public class SeatAssignment {
     private float grade; // Numeric representation (e.g., A=4.0, A-=3.7)
@@ -38,7 +39,11 @@ public class SeatAssignment {
         this.liked = liked;
     }
 
-    
+    public void assignRandomGrade() {
+        Random random = new Random();
+        float randomGrade = 0.1f * random.nextInt(41); // This will generate a random float between 0.0 and 4.0
+        setGrade(randomGrade);
+    }
 
     public float getGrade() {
         return grade;

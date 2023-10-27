@@ -44,7 +44,7 @@ public class StudentProfile {
 
     public CourseLoad newCourseLoad(String s) {
 
-        return transcript.newCourseLoad();
+        return transcript.newCourseLoad("Fall2023");
     }
 
     public ArrayList<SeatAssignment> getCourseList() {

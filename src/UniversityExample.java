@@ -8,11 +8,13 @@ import CourseSchedule.SeatAssignment;
 import Degree.Degree;
 import Department.Department;
 import Persona.Person;
+import Persona.Person.Student;
 import Persona.StudentProfile;
 import Persona.PersonDirectory;
 import Persona.StudentDirectory;
 import Persona.Faculty.FacultyDirectory;
 import Persona.Faculty.FacultyProfile;
+import java.util.Random;
 
 public class UniversityExample {
 
@@ -23,6 +25,8 @@ public class UniversityExample {
         Department department = new Department("Information Systems");
         department.printDepartmentName(); 
         college.addDepartment(department);
+        // Student students = addnewStudent(10);
+        // StudentProfile studentProfiles = new StudentProfile(10);
         
 
         FacultyDirectory fd = department.getFacultyDirectory();
@@ -38,9 +42,6 @@ public class UniversityExample {
             String studentId = "ID" + (j + 1);
             String studentName = "Student " + (j + 1);
             Person studentPerson = pd.newPerson(studentId, studentName);
-
-
-            
             sd.newStudentProfile(studentPerson);
         }
 
@@ -98,10 +99,19 @@ public class UniversityExample {
 
         for (StudentProfile studentProfile : sd.getAllStudentProfiles()) {
             CourseLoad cl = studentProfile.getCurrentCourseLoad();
+
+            System.out.println("\n---------------------");
+            System.out.println("Student ID: " + studentProfile.getPerson().getPersonId());
+            System.out.println("Student Name: " + studentProfile.getPerson().getName());
+            System.out.println("---------------------");
             
         if (cl != null) {
+            Random rand = new Random();
             for (SeatAssignment seatAssignment : cl.getSeatAssignments()) {
-                seatAssignment.assignGrade(3.5f);
+                float randomGrade = 1 + rand.nextFloat() * (4 - 1); 
+                seatAssignment.assignGrade(randomGrade );
+                // System.out.println("Student: " + studentProfile.getPerson().getName());
+                seatAssignment.printSeatInfo();
             }
         } else {
             System.out.println("Warning: CourseLoad is null for student: " + studentProfile.getPerson().getName());
@@ -120,4 +130,37 @@ public class UniversityExample {
         }
         return totalRevenue;
     }
+  
+    
+//     // Part 4 – Displaying Course Enrollment and Grades for Each Student
+//     System.out.println("\nCourses Enrollment and Grades:");
+//     System.out.println("--------------------------------------------------");
+//     for (StudentProfile studentProfile : sd.getAllStudentProfiles()) {
+//         CourseLoad cl = studentProfile.getCurrentCourseLoad();
+    
+//         System.out.println("\n---------------------");
+//         System.out.println("Student ID: " + studentProfile.getPerson().getPersonId());
+//         System.out.println("Student Name: " + studentProfile.getPerson().getName());
+//         System.out.println("---------------------");
+    
+//         if (cl != null) {
+//             for (SeatAssignment seatAssignment : cl.getSeatAssignments()) {
+//                 System.out.println("Course: " + seatAssignment.getCourseOffer().getCourse().getCourseName());
+//                 System.out.println("Course Number: " + seatAssignment.getCourseOffer().getCourse().getCourseByNumber());
+//                 System.out.println("Grade: " + seatAssignment.getGrade());
+//                 System.out.println("---------------------");
+//         }
+//         } else {
+//             System.out.println("Warning: CourseLoad is null for student: " + studentProfile.getPerson().getName());
+//     }
+// }
+
+//     System.out.println("Total Revenue for Fall2023: $" + calculateTotalRevenues(csFall2023, 6000));
+
+
+
+
+
+
+
 }

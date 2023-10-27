@@ -10,6 +10,7 @@ public class UserAccount {
     private Person person;
     private Workarea landingworkarea;
     private Transcript transcript;
+
     
     public UserAccount(Person p){
         person = p;
